@@ -1,4 +1,4 @@
-package io.github.joyoungc.swagger.common;
+package io.github.joyoungc.common;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -14,8 +14,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import io.github.joyoungc.common.Error;
 
+import io.github.joyoungc.common.Error;
+import io.github.joyoungc.common.ErrorResponse;
 import io.github.joyoungc.common.exception.NoDataFoundException;
 
 @ControllerAdvice(annotations = RestController.class)
@@ -39,8 +40,8 @@ public class ExceptionHandlerAdvice {
 	@ResponseBody
 	public ErrorResponse noDataFoundError (HttpServletRequest req, Exception ex) {
 		logger.error("##### noDataFoundError #####");
-		logger.error("Request: {}, raised: {}", req.getRequestURL(), ex);
-		return new ErrorResponse(io.github.joyoungc.common.Error.NO_DATA_FOUND);
+		logger.error("Request: {}, raised: {}", req.getRequestURL(), ex.getMessage());
+		return new ErrorResponse(Error.NO_DATA_FOUND);
 	}
 	
 	@ExceptionHandler(value= {BindException.class, HttpMessageNotReadableException.class})

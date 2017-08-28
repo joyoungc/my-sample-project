@@ -2,7 +2,7 @@ package io.github.joyoungc.swagger.api.user.model;
 
 import javax.validation.constraints.Size;
 
-import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.NotBlank;
 
 import io.github.joyoungc.common.Code;
 import io.swagger.annotations.ApiModel;
@@ -27,7 +27,7 @@ public class User {
 	}
 
 	@ApiModelProperty(value = Code.Constants.USER_ID, required = true, example = "joyoungc", position = Code.Constants.USER_ID_POS)
-	@NotEmpty
+	@NotBlank
 	@Size(max = 20)
 	public String getUserId() {
 		return userId;

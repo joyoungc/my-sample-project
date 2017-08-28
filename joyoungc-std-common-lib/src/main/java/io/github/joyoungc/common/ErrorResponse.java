@@ -1,4 +1,4 @@
-package io.github.joyoungc.swagger.common;
+package io.github.joyoungc.common;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;

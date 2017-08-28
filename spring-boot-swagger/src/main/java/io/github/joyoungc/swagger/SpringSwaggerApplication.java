@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"io.github.joyoungc.swagger"})
+@ComponentScan(basePackages = {"io.github.joyoungc"})
 public class SpringSwaggerApplication {
 
 	public static void main(String[] args) {
