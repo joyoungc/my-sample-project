@@ -13,9 +13,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.github.joyoungc.common.Code;
-import io.github.joyoungc.swagger.api.product.model.Product;
+import io.github.joyoungc.common.service.ProductService;
 import io.github.joyoungc.swagger.api.product.model.RequestProduct;
-import io.github.joyoungc.swagger.api.product.service.ProductService;
+import io.github.joyoungc.swagger.api.product.model.ResponseProduct;
+import io.github.joyoungc.swagger.api.product.model.mapper.ProductModelMapper;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
@@ -27,21 +28,21 @@ public class ProductController {
 
 	@ApiOperation(value = Code.Constants.PRODUCT + "조회", tags = { Code.Constants.API_TAG_PRODUCT })
 	@RequestMapping(value = "/{productId}", method = RequestMethod.GET)
-	public Product getProduct(@PathVariable String productId) {
-		return productService.getProduct(productId);
+	public ResponseProduct getProduct(@PathVariable String productId) {
+		return ProductModelMapper.toResponse(productService.getProduct(productId));
 	}
 
 	@ApiOperation(value = Code.Constants.PRODUCT + "목록조회", tags = { Code.Constants.API_TAG_PRODUCT })
 	@RequestMapping(method = RequestMethod.GET)
-	public List<Product> selectProducts() {
-		return productService.selectProducts();
+	public List<ResponseProduct> selectProducts() {
+		return ProductModelMapper.toResponse(productService.selectProducts());
 	}
 
 	@ApiOperation(value = Code.Constants.PRODUCT + "등록", tags = { Code.Constants.API_TAG_PRODUCT })
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.CREATED)
-	public Product createProduct(@RequestBody @Validated RequestProduct product) {
-		return productService.createProduct(product);
+	public void createProduct(@RequestBody @Validated RequestProduct product) {
+		productService.createProduct(product);
 	}
 
 	@ApiOperation(value = Code.Constants.PRODUCT + "수정", tags = { Code.Constants.API_TAG_PRODUCT })

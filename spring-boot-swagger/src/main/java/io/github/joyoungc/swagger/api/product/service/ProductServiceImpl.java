@@ -1,4 +1,4 @@
-package io.github.joyoungc.swagger.api.product.service.impl;
+package io.github.joyoungc.swagger.api.product.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,9 +9,8 @@ import javax.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
 
 import io.github.joyoungc.common.exception.NoDataFoundException;
-import io.github.joyoungc.swagger.api.product.model.Product;
-import io.github.joyoungc.swagger.api.product.model.RequestProduct;
-import io.github.joyoungc.swagger.api.product.service.ProductService;
+import io.github.joyoungc.common.model.Product;
+import io.github.joyoungc.common.service.ProductService;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -38,14 +37,13 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public Product createProduct(RequestProduct product) {
+	public void createProduct(Product product) {
 		Product addProduct = new Product(UUID.randomUUID().toString(), product.getProductName(), product.getPrice(), product.getDescription());
 		products.add(addProduct);
-		return addProduct;
 	}
 
 	@Override
-	public void updateProduct(RequestProduct product) {
+	public void updateProduct(Product product) {
 		boolean removed = products.removeIf(p -> p.getProductId().equals(product.getProductId()));
 		if (!removed) {
 			throw new NoDataFoundException();
