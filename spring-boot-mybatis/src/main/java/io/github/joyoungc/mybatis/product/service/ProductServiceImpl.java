@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import io.github.joyoungc.common.exception.NoDataFoundException;
 import io.github.joyoungc.common.model.Product;
@@ -12,9 +13,9 @@ import io.github.joyoungc.mybatis.product.mapper.ProductMapper;
 
 @Service
 public class ProductServiceImpl implements ProductService {
-	
+
 	@Autowired
-	ProductMapper productMapper; 
+	ProductMapper productMapper;
 
 	@Override
 	public Product getProduct(String productId) {
@@ -33,11 +34,13 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
+	@Transactional	
 	public void createProduct(Product product) {
 		productMapper.createProduct(product);
 	}
 
 	@Override
+	@Transactional
 	public void updateProduct(Product product) {
 		int result = productMapper.updateProduct(product);
 		if (result < 1)
@@ -45,6 +48,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
+	@Transactional
 	public void deleteProduct(String productId) {
 		int result = productMapper.deleteProduct(productId);
 		if (result < 1)
