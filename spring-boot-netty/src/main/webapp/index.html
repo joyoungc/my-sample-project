@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Call Bell Demo</title>
+<style>
+.responsive-container {
+  	display: table-cell;
+    vertical-align: middle;
+}
+.img-container {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	text-align: center;
+	font: 0/0 a;
+	border: none;
+}
+
+.img-container .centerer {
+	display: inline-block;
+	vertical-align: middle;
+	height: 100%;
+	border: none;
+}
+
+.img-container img {
+	vertical-align: middle;
+	display: inline-block;
+	max-height: 100%; /* <-- Set maximum height to 100% of its parent */
+	max-width: 100%; /* <-- Set maximum width to 100% of its parent */	
+}
+</style>
+</head>
+<body>
+	<div class="responsive-container">
+		<div class="img-container">
+			<div class="centerer"></div>
+			<input type="image" src="/callbell.jpg" onclick="loadDoc()" />
+		</div>
+	</div>
+	<script>
+		function loadDoc() {
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					// document.getElementById("demo").innerHTML = this.responseText;
+				}
+			};
+			xhttp.open("GET", "/call/user?msg=CallManager", true);
+			xhttp.send();
+		}
+	</script>
+</body>
+</html>
