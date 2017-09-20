@@ -49,7 +49,7 @@ public class SwaggerConfig {
 //			.licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
 //			.termsOfServiceUrl("")
 			.version("1.0.1 RELEASE")
-			.contact(new Contact("Joyoungc", "https://github.com/joyoungc/spring-boot-swagger", "joyoungc@bluedigm.com"))
+			.contact(new Contact("Joyoungc", "https://github.com/joyoungc/spring-boot-swagger", ""))
 			.build();
 	}
 	
@@ -58,7 +58,7 @@ public class SwaggerConfig {
 			.title("Spring Boot Swagger Page for Admin")
 			.description("개발된 API를 swagger를 이용해 실시간 html 문서로 반영하기")
 			.version("0.1.1 SNAPSHOT")
-			.contact(new Contact("Joyoungc", "https://github.com/joyoungc/spring-boot-swagger", "joyoungc@bluedigm.com"))
+			.contact(new Contact("Joyoungc", "https://github.com/joyoungc/spring-boot-swagger", ""))
 			.build();
 	}
 

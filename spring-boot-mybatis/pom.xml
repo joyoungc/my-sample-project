@@ -21,9 +21,8 @@
 	<dependencies>
 		<dependency>
 			<groupId>io.github.joyoungc</groupId>
-			<artifactId>joyoungc-std-common-lib</artifactId>
+			<artifactId>spring-boot-common</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
@@ -36,14 +35,5 @@
 			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
 
 </project>

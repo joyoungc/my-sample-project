@@ -35,8 +35,9 @@ public class ProductServiceImpl implements ProductService<Product, Product, Prod
 
 	@Transactional
 	@Override
-	public void createProduct(Product product) {
+	public Product createProduct(Product product) {
 		productMapper.createProduct(product);
+		return product;
 	}
 
 	@Transactional

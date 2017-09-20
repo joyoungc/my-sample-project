@@ -13,10 +13,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.github.joyoungc.common.Code;
-import io.github.joyoungc.swagger.api.product.model.RequestProduct;
-import io.github.joyoungc.swagger.api.product.model.ResponseProduct;
-import io.github.joyoungc.swagger.api.product.model.mapper.ProductModelMapper;
-import io.github.joyoungc.swagger.api.product.service.ProductServiceImpl;
+import io.github.joyoungc.common.service.ProductService;
+import io.github.joyoungc.swagger.api.product.model.ProductDTO;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
@@ -24,30 +22,30 @@ import io.swagger.annotations.ApiOperation;
 public class ProductController {
 
 	@Autowired
-	ProductServiceImpl productService;
+	ProductService<ProductDTO.Create, ProductDTO.Response, ProductDTO.Update> productService;
 
 	@ApiOperation(value = Code.Constants.PRODUCT + "조회", tags = { Code.Constants.API_TAG_PRODUCT })
 	@RequestMapping(value = "/{productId}", method = RequestMethod.GET)
-	public ResponseProduct getProduct(@PathVariable String productId) {
-		return ProductModelMapper.toResponse(productService.getProduct(productId));
+	public ProductDTO.Response getProduct(@PathVariable String productId) {
+		return productService.getProduct(productId);
 	}
 
 	@ApiOperation(value = Code.Constants.PRODUCT + "목록조회", tags = { Code.Constants.API_TAG_PRODUCT })
 	@RequestMapping(method = RequestMethod.GET)
-	public List<ResponseProduct> selectProducts() {
-		return ProductModelMapper.toResponse(productService.selectProducts());
+	public List<ProductDTO.Response> selectProducts() {
+		return productService.selectProducts();
 	}
 
 	@ApiOperation(value = Code.Constants.PRODUCT + "등록", tags = { Code.Constants.API_TAG_PRODUCT })
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.CREATED)
-	public void createProduct(@RequestBody @Validated RequestProduct product) {
-		productService.createProduct(product);
+	public ProductDTO.Response createProduct(@RequestBody @Validated ProductDTO.Create product) {
+		return productService.createProduct(product);
 	}
 
 	@ApiOperation(value = Code.Constants.PRODUCT + "수정", tags = { Code.Constants.API_TAG_PRODUCT })
 	@RequestMapping(value = "/{productId}", method = RequestMethod.PUT)
-	public void updateProduct(@PathVariable String productId, @RequestBody @Validated RequestProduct product) {
+	public void updateProduct(@PathVariable String productId, @RequestBody @Validated ProductDTO.Update product) {
 		product.setProductId(productId);
 		productService.updateProduct(product);
 	}

@@ -2,6 +2,8 @@ package io.github.joyoungc.mybatis.product.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
@@ -34,7 +36,7 @@ public class ProductController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.CREATED)
-	public void createProduct(@RequestBody @Validated Product product) {
+	public void createProduct(@RequestBody @Valid Product product) {
 		productService.createProduct(product);
 	}
 

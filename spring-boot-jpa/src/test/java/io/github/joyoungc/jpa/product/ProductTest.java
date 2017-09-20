@@ -41,14 +41,12 @@ public class ProductTest {
 	public void createProduct() throws Exception {
 
 		ProductDTO.Create createDto = new ProductDTO.Create();
-		createDto.setProductName("asdf");
+		createDto.setProductName("ipsum lorem");
 		createDto.setPrice(10000);
 
 		mockMvc.perform(
 				post("/products").contentType(MediaType.APPLICATION_JSON).content(mapper.writeValueAsString(createDto)))
-				.andDo(print()).andExpect(status().isCreated())
-		// .andExpect(jsonPath("",))
-		;
+				.andDo(print()).andExpect(status().isCreated());
 	}
 
 }
