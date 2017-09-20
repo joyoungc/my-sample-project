@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.github.joyoungc.common.Code;
-import io.github.joyoungc.common.service.ProductService;
 import io.github.joyoungc.swagger.api.product.model.RequestProduct;
 import io.github.joyoungc.swagger.api.product.model.ResponseProduct;
 import io.github.joyoungc.swagger.api.product.model.mapper.ProductModelMapper;
+import io.github.joyoungc.swagger.api.product.service.ProductServiceImpl;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
@@ -24,7 +24,7 @@ import io.swagger.annotations.ApiOperation;
 public class ProductController {
 
 	@Autowired
-	ProductService productService;
+	ProductServiceImpl productService;
 
 	@ApiOperation(value = Code.Constants.PRODUCT + "조회", tags = { Code.Constants.API_TAG_PRODUCT })
 	@RequestMapping(value = "/{productId}", method = RequestMethod.GET)

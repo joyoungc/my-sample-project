@@ -12,10 +12,10 @@ import io.github.joyoungc.common.service.ProductService;
 import io.github.joyoungc.mybatis.product.mapper.ProductMapper;
 
 @Service
-public class ProductServiceImpl implements ProductService {
+public class ProductServiceImpl implements ProductService<Product, Product, Product> {
 
 	@Autowired
-	ProductMapper productMapper;
+	private ProductMapper productMapper;
 
 	@Override
 	public Product getProduct(String productId) {
@@ -33,22 +33,22 @@ public class ProductServiceImpl implements ProductService {
 		return list;
 	}
 
+	@Transactional
 	@Override
-	@Transactional	
 	public void createProduct(Product product) {
 		productMapper.createProduct(product);
 	}
 
-	@Override
 	@Transactional
+	@Override
 	public void updateProduct(Product product) {
 		int result = productMapper.updateProduct(product);
 		if (result < 1)
 			throw new NoDataFoundException();
 	}
 
-	@Override
 	@Transactional
+	@Override
 	public void deleteProduct(String productId) {
 		int result = productMapper.deleteProduct(productId);
 		if (result < 1)

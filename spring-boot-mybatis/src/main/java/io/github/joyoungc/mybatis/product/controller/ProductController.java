@@ -20,7 +20,7 @@ import io.github.joyoungc.common.service.ProductService;
 public class ProductController {
 
 	@Autowired
-	ProductService productService;
+	ProductService<Product, Product, Product> productService;
 
 	@RequestMapping(value = "/{productId}", method = RequestMethod.GET)
 	public Product getProduct(@PathVariable String productId) {

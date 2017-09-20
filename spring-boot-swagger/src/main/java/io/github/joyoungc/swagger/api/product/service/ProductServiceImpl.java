@@ -13,7 +13,7 @@ import io.github.joyoungc.common.model.Product;
 import io.github.joyoungc.common.service.ProductService;
 
 @Service
-public class ProductServiceImpl implements ProductService {
+public class ProductServiceImpl implements ProductService<Product, Product, Product> {
 
 	List<Product> products = new ArrayList<>();
 
@@ -38,7 +38,8 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public void createProduct(Product product) {
-		Product addProduct = new Product(UUID.randomUUID().toString(), product.getProductName(), product.getPrice(), product.getDescription());
+		Product addProduct = new Product(UUID.randomUUID().toString(), product.getProductName(), product.getPrice(),
+				product.getDescription());
 		products.add(addProduct);
 	}
 
@@ -48,8 +49,9 @@ public class ProductServiceImpl implements ProductService {
 		if (!removed) {
 			throw new NoDataFoundException();
 		}
-		products.add(new Product(product.getProductId(), product.getProductName(), product.getPrice(), product.getDescription()));
-		products.sort((o1,o2) -> o1.getProductId().compareTo(o2.getProductId()));
+		products.add(new Product(product.getProductId(), product.getProductName(), product.getPrice(),
+				product.getDescription()));
+		products.sort((o1, o2) -> o1.getProductId().compareTo(o2.getProductId()));
 	}
 
 	@Override
