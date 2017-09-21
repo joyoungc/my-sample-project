@@ -1,28 +1,22 @@
 package io.github.joyoungc.swagger.api.product.service;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 import javax.annotation.PostConstruct;
 
-import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeToken;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import io.github.joyoungc.common.exception.NoDataFoundException;
 import io.github.joyoungc.common.model.Product;
+import io.github.joyoungc.common.model.mapper.CommonMapper;
 import io.github.joyoungc.common.service.ProductService;
 import io.github.joyoungc.swagger.api.product.model.ProductDTO;
 
 @Service
 public class ProductServiceImpl implements ProductService<ProductDTO.Create, ProductDTO.Response, ProductDTO.Update> {
 	
-	@Autowired
-	private ModelMapper modelMapper;
-
 	List<Product> products = new ArrayList<>();
 	
 	@PostConstruct
@@ -35,22 +29,21 @@ public class ProductServiceImpl implements ProductService<ProductDTO.Create, Pro
 
 	@Override
 	public ProductDTO.Response getProduct(String productId) {
-		return modelMapper.map(products.stream().filter(p -> p.getProductId().equals(productId)).findFirst()
+		return CommonMapper.toModel(products.stream().filter(p -> p.getProductId().equals(productId)).findFirst()
 				.orElseThrow(NoDataFoundException::new), ProductDTO.Response.class);
 	}
 
 	@Override
 	public List<ProductDTO.Response> selectProducts() {
-		Type destinationType = new TypeToken<List<ProductDTO.Response>>() {}.getType();
-		return modelMapper.map(products, destinationType);
+		return CommonMapper.toList(products, ProductDTO.Response.class);
 	}
 
 	@Override
 	public ProductDTO.Response createProduct(ProductDTO.Create product) {
-		Product addProduct = modelMapper.map(product, Product.class);
+		Product addProduct = CommonMapper.toModel(product, Product.class);
 		addProduct.setProductId(UUID.randomUUID().toString());
 		products.add(addProduct);
-		return modelMapper.map(addProduct,ProductDTO.Response.class);
+		return CommonMapper.toModel(addProduct,ProductDTO.Response.class);
 	}
 
 	@Override
@@ -59,7 +52,7 @@ public class ProductServiceImpl implements ProductService<ProductDTO.Create, Pro
 		if (!removed) {
 			throw new NoDataFoundException();
 		}
-		products.add(modelMapper.map(product, Product.class));
+		products.add(CommonMapper.toModel(product, Product.class));
 		products.sort((o1, o2) -> o1.getProductId().compareTo(o2.getProductId()));
 	}
 
