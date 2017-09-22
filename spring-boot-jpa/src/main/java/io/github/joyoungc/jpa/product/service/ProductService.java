@@ -10,8 +10,10 @@ import io.github.joyoungc.common.model.mapper.CommonMapper;
 import io.github.joyoungc.jpa.product.ProductRepository;
 import io.github.joyoungc.jpa.product.model.Product;
 import io.github.joyoungc.jpa.product.model.ProductDTO;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
+@Slf4j
 public class ProductService {
 
 	@Autowired
@@ -22,6 +24,7 @@ public class ProductService {
 	}
 
 	public Page<ProductDTO.Response> selectProducts(Pageable pageable) {
+		log.info("## selectProducts");
 		Page<Product> page = repository.findAll(pageable);
 		return new PageImpl<>(CommonMapper.toList(page.getContent(), ProductDTO.Response.class), pageable,
 				page.getTotalElements());
