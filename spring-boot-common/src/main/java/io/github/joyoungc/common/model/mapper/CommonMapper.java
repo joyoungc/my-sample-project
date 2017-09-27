@@ -26,5 +26,14 @@ public class CommonMapper {
 	public static <T> List<T> toList(Object list, Class<T> type) {
 		return list != null ? new ModelMapper().map(list, new TypeToken<List<T>>() {}.getType()) : null;
 	}
+	
+	/**
+	 * src Object를 dest Object에 업데이트 한다.
+	 * @param src
+	 * @param dest
+	 */
+	public static void updateModel(Object src, Object dest) {
+		new ModelMapper().map(src, dest);
+	}
 
 }

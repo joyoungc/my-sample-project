@@ -25,7 +25,7 @@ public class ProductDTO {
 	@Data
 	public static class Update {
 		@NotBlank
-		@Size(min=3)
+		@Size(min=4)
 		private String productName;
 		
 		@NotNull
