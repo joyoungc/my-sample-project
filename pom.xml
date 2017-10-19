@@ -28,6 +28,7 @@
 		<module>spring-boot-jpa</module>
 		<module>spring-boot-netty</module>
     <module>spring-boot-security</module>
+    <module>spring-boot-web</module>
   </modules>
 
 	<dependencies>

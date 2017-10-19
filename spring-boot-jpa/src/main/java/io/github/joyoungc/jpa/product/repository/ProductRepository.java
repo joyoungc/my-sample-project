@@ -1,4 +1,4 @@
-package io.github.joyoungc.jpa.product;
+package io.github.joyoungc.jpa.product.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
