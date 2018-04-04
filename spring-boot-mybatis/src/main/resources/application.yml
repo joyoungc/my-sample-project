@@ -1,0 +1,15 @@
+spring:
+  datasource.schema: classpath:import.sql
+
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: DEBUG
+    io.github.joyoungc.mybatis: TRACE
+    org.springframework.jdbc: DEBUG
+
+server:
+  port: 9000

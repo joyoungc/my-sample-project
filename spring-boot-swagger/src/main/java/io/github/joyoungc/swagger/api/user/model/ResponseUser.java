@@ -1,8 +1,8 @@
 package io.github.joyoungc.swagger.api.user.model;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-import org.hibernate.validator.constraints.NotBlank;
 
 import io.github.joyoungc.common.Code;
 import io.github.joyoungc.common.model.User;

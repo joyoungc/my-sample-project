@@ -3,7 +3,6 @@ package io.github.joyoungc.common;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -40,7 +39,7 @@ public class ExceptionHandlerAdvice {
 		return new ErrorResponse(Error.NO_DATA_FOUND);
 	}
 
-	@ExceptionHandler(value = { HttpMessageNotReadableException.class, MissingServletRequestParameterException.class })
+	@ExceptionHandler(value = { MissingServletRequestParameterException.class })
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ResponseBody
 	public ErrorResponse badRequestError(HttpServletRequest req, Exception ex) {
