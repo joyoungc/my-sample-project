@@ -27,7 +27,7 @@ public class UserService {
 	private UserRepository repository;
 
 	public ProductDTO.Response getUser(Long id) {
-		return CommonMapper.toModel(repository.findOne(id), ProductDTO.Response.class);
+		return CommonMapper.toModel(repository.getOne(id), ProductDTO.Response.class);
 	}
 
 	public Page<ProductDTO.Response> selectUsers(Pageable pageable) {
@@ -46,7 +46,7 @@ public class UserService {
 	}
 
 	public ProductDTO.Response updateProduct(Long id, ProductDTO.Update dto) {
-		User dest = repository.findOne(id);
+		User dest = repository.getOne(id);
 		if (dest == null)
 			throw new NoDataFoundException();
 
@@ -57,7 +57,7 @@ public class UserService {
 	}
 
 	public void deleteProduct(Long id) {
-		User dest = repository.findOne(id);
+		User dest = repository.getOne(id);
 		if (dest == null)
 			throw new NoDataFoundException();
 

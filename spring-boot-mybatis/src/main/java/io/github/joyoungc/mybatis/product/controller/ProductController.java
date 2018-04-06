@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.github.joyoungc.common.model.Product;
-import io.github.joyoungc.common.service.ProductService;
+import io.github.joyoungc.mybatis.product.service.ProductService;
 
 @RestController
 @RequestMapping("/products")
 public class ProductController {
 
 	@Autowired
-	ProductService<Product, Product, Product> productService;
+	ProductService productService;
 
 	@RequestMapping(value = "/{productId}", method = RequestMethod.GET)
 	public Product getProduct(@PathVariable String productId) {

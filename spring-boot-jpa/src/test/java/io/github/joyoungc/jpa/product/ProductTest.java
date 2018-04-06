@@ -68,7 +68,7 @@ public class ProductTest {
 				.andDo(print()).andExpect(status().isCreated());
 	}
 
-	@Ignore
+	@Test
 	public void selectProducts() throws Exception {
 		mockMvc.perform(get("/products?page=4&size=10"))
 		.andDo(print())
@@ -97,7 +97,7 @@ public class ProductTest {
 		.andExpect(jsonPath("$.productName").value("update test"));
 	}
 	
-	@Test 
+	@Ignore 
 	public void deleteProduct() throws Exception {
 		mockMvc.perform(delete("/products/3"))
 		.andDo(print())

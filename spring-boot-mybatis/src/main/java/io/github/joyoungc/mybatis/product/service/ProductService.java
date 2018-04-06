@@ -8,16 +8,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 import io.github.joyoungc.common.exception.NoDataFoundException;
 import io.github.joyoungc.common.model.Product;
-import io.github.joyoungc.common.service.ProductService;
 import io.github.joyoungc.mybatis.product.mapper.ProductMapper;
 
 @Service
-public class ProductServiceImpl implements ProductService<Product, Product, Product> {
+public class ProductService {
 
 	@Autowired
 	private ProductMapper productMapper;
 
-	@Override
 	public Product getProduct(String productId) {
 		Product product = productMapper.getProduct(productId);
 		if (product == null)
@@ -25,7 +23,6 @@ public class ProductServiceImpl implements ProductService<Product, Product, Prod
 		return product;
 	}
 
-	@Override
 	public List<Product> selectProducts() {
 		List<Product> list = productMapper.selectProducts();
 		if (list == null)
@@ -34,14 +31,11 @@ public class ProductServiceImpl implements ProductService<Product, Product, Prod
 	}
 
 	@Transactional
-	@Override
-	public Product createProduct(Product product) {
-		productMapper.createProduct(product);
-		return product;
+	public Integer createProduct(Product product) {
+		return productMapper.createProduct(product);
 	}
 
 	@Transactional
-	@Override
 	public void updateProduct(Product product) {
 		int result = productMapper.updateProduct(product);
 		if (result < 1)
@@ -49,11 +43,11 @@ public class ProductServiceImpl implements ProductService<Product, Product, Prod
 	}
 
 	@Transactional
-	@Override
-	public void deleteProduct(String productId) {
+	public Integer deleteProduct(String productId) {
 		int result = productMapper.deleteProduct(productId);
 		if (result < 1)
 			throw new NoDataFoundException();
+		return result;
 	}
 
 }

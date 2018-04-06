@@ -11,11 +11,10 @@ import org.springframework.stereotype.Service;
 import io.github.joyoungc.common.exception.NoDataFoundException;
 import io.github.joyoungc.common.model.Product;
 import io.github.joyoungc.common.model.mapper.CommonMapper;
-import io.github.joyoungc.common.service.ProductService;
 import io.github.joyoungc.swagger.api.product.model.ProductDTO;
 
 @Service
-public class ProductServiceImpl implements ProductService<ProductDTO.Create, ProductDTO.Response, ProductDTO.Update> {
+public class ProductService {
 	
 	List<Product> products = new ArrayList<>();
 	
@@ -27,18 +26,15 @@ public class ProductServiceImpl implements ProductService<ProductDTO.Create, Pro
 		products.add(Product.builder().productId("P100004").productName("Sony XPERIA XZ Premium").price(600000).description("소니 엑스페리아XZ").build());
 	}
 
-	@Override
 	public ProductDTO.Response getProduct(String productId) {
 		return CommonMapper.toModel(products.stream().filter(p -> p.getProductId().equals(productId)).findFirst()
 				.orElseThrow(NoDataFoundException::new), ProductDTO.Response.class);
 	}
 
-	@Override
 	public List<ProductDTO.Response> selectProducts() {
 		return CommonMapper.toList(products, ProductDTO.Response.class);
 	}
 
-	@Override
 	public ProductDTO.Response createProduct(ProductDTO.Create product) {
 		Product addProduct = CommonMapper.toModel(product, Product.class);
 		addProduct.setProductId(UUID.randomUUID().toString());
@@ -46,7 +42,6 @@ public class ProductServiceImpl implements ProductService<ProductDTO.Create, Pro
 		return CommonMapper.toModel(addProduct,ProductDTO.Response.class);
 	}
 
-	@Override
 	public void updateProduct(ProductDTO.Update product) {
 		boolean removed = products.removeIf(p -> p.getProductId().equals(product.getProductId()));
 		if (!removed) {
@@ -56,7 +51,6 @@ public class ProductServiceImpl implements ProductService<ProductDTO.Create, Pro
 		products.sort((o1, o2) -> o1.getProductId().compareTo(o2.getProductId()));
 	}
 
-	@Override
 	public void deleteProduct(String productId) {
 		boolean removed = products.removeIf(p -> p.getProductId().equals(productId));
 		if (!removed) {

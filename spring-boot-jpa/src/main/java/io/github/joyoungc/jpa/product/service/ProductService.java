@@ -27,7 +27,7 @@ public class ProductService {
 	private ProductRepository repository;
 
 	public ProductDTO.Response getProduct(String productId) {
-		return CommonMapper.toModel(repository.findOne(productId), ProductDTO.Response.class);
+		return CommonMapper.toModel(repository.getOne(productId), ProductDTO.Response.class);
 	}
 
 	public Page<ProductDTO.Response> selectProducts(Pageable pageable) {
@@ -46,7 +46,7 @@ public class ProductService {
 	}
 
 	public ProductDTO.Response updateProduct(String productId, ProductDTO.Update dto) {
-		Product dest = repository.findOne(productId);
+		Product dest = repository.getOne(productId);
 		if (dest == null)
 			throw new NoDataFoundException();
 
@@ -57,7 +57,7 @@ public class ProductService {
 	}
 
 	public void deleteProduct(String productId) {
-		Product dest = repository.findOne(productId);
+		Product dest = repository.getOne(productId);
 		if (dest == null)
 			throw new NoDataFoundException();
 
