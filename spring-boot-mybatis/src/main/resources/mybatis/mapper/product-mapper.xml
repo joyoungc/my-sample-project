@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="io.github.joyoungc.mybatis.product.mapper.ProductMapper">
+<mapper namespace="io.github.joyoungc.mybatis.mapper.ProductMapper">
 
 	<select id="getProduct" resultType="Product">
 		SELECT * FROM product

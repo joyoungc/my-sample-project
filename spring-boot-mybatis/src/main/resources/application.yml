@@ -1,8 +1,16 @@
 spring:
   datasource.schema: classpath:import.sql
-
+  
 mybatis:
-  config-location: classpath:mybatis/mybatis-config.xml
+    type-aliases-package: io.github.joyoungc.mybatis.model;
+    mapper-locations: classpath:mybatis/**/*-mapper.xml
+    configuration:
+        map-underscore-to-camel-case: true
+        default-fetch-size: 100
+        default-statement-timeout: 30  
+
+# mybatis:
+#   config-location: classpath:mybatis/mybatis-config.xml
 
 logging:
   level:
@@ -13,3 +21,5 @@ logging:
 
 server:
   port: 9000
+
+  

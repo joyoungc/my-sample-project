@@ -1,0 +1,14 @@
+enabled: true
+remote-address: 192.168.1.1
+security:
+  username: admin
+  roles:
+    - USER
+    - ADMIN
+list:
+  - name: my name
+    desc: my description
+    
+map:
+  - name: my map
+    desc: my desc

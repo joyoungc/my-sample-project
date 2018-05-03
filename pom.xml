@@ -10,9 +10,6 @@
 	<packaging>pom</packaging>
 	<name>spring-boot-multi-module</name>
 
-	<!-- <properties> <java.version>1.8</java.version> <lombok.version>1.16.16</lombok.version> 
-		</properties> -->
-
 	<modules>
 		<module>spring-boot-common</module>
 		<module>spring-boot-swagger</module>
@@ -20,48 +17,18 @@
 		<module>spring-boot-jpa</module>
 		<module>spring-boot-netty</module>
 		<module>spring-boot-security</module>
-		<module>spring-boot-web</module>
+		<module>spring-boot-web-mvc</module>
+		<module>spring-boot-properties</module>
 	</modules>
 
-<!-- 	<dependencies>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<scope>provided</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.modelmapper</groupId>
-			<artifactId>modelmapper</artifactId>
-			<version>1.1.0</version>
-		</dependency>
-
-	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build> -->
+	<!-- <dependencies> <dependency> <groupId>org.springframework.boot</groupId> 
+		<artifactId>spring-boot-starter</artifactId> </dependency> <dependency> <groupId>org.springframework.boot</groupId> 
+		<artifactId>spring-boot-starter-web</artifactId> </dependency> <dependency> 
+		<groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-test</artifactId> 
+		<scope>test</scope> </dependency> <dependency> <groupId>org.projectlombok</groupId> 
+		<artifactId>lombok</artifactId> <scope>provided</scope> </dependency> <dependency> 
+		<groupId>org.modelmapper</groupId> <artifactId>modelmapper</artifactId> <version>1.1.0</version> 
+		</dependency> </dependencies> <build> <plugins> <plugin> <groupId>org.springframework.boot</groupId> 
+		<artifactId>spring-boot-maven-plugin</artifactId> </plugin> </plugins> </build> -->
 
 </project>
