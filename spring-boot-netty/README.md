@@ -8,5 +8,5 @@ Spring Boot에 Netty TCP Server를 적용한 예제 프로젝트 입니다.
 | Environment |  Version |
 | ----- | ----- |
 | Java | 1.8 |
-| [spring-boot](https://github.com/spring-projects/spring-boot) | 1.5.6 |
+| [spring-boot](https://github.com/spring-projects/spring-boot) | 2.0.1 |
 | [netty](https://github.com/netty/netty) | 4.1.15.Final |

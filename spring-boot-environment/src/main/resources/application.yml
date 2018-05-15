@@ -1,0 +1,15 @@
+enabled: true
+
+remote-address: 192.168.1.1
+
+my-random:
+  secret: ${random.value}
+  number: ${random.int}
+  bignumber: ${random.long}
+  uuid: ${random.uuid}
+  number-less-than-ten: ${random.int(10)}
+  number-in-range: ${random.int[1024,65536]}
+  
+list:
+  - name: my name
+    desc: my description  

@@ -1,0 +1,9 @@
+security:
+  username: admin
+  roles:
+    - USER
+    - ADMIN
+
+list:
+  - name: my dev
+    desc: my description

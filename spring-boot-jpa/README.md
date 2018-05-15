@@ -7,5 +7,5 @@ Spring Boot에 JPA를 적용한 예제 프로젝트 입니다.
 | Environment |  Version |
 | ----- | ----- |
 | Java | 1.8 |
-| [spring-boot](https://github.com/spring-projects/spring-boot) | 1.5.6 |
+| [spring-boot](https://github.com/spring-projects/spring-boot) | 2.0.1 |
 | [H2 Database](http://www.h2database.com) | 1.4.196 |

@@ -8,4 +8,4 @@
   \ \ /\ / / _ \ '_ \  | |\/| |\ \ / / |                 
    \ V  V /  __/ |_) | | |  | | \ V /| |___              
     \_/\_/ \___|_.__/  |_|  |_|  \_/  \____|             
-:: Spring Boot ::       ${spring-boot.formatted-version}
+${Ansi.GREEN}:: Spring Boot ::       ${Ansi.DEFAULT}${spring-boot.formatted-version}
