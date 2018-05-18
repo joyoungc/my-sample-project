@@ -6,7 +6,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>spring-boot-redis</artifactId>
 	<packaging>jar</packaging>
-	<name>spring-boot-redis</name>
+	<name>spring-boot-redis-test</name>
 
 	<parent>
 		<groupId>io.github.joyoungc</groupId>
