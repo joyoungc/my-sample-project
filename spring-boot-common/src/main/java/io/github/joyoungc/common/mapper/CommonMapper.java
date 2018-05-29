@@ -1,4 +1,4 @@
-package io.github.joyoungc.common.model.mapper;
+package io.github.joyoungc.common.mapper;
 
 import java.util.List;
 

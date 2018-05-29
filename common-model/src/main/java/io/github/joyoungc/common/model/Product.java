@@ -1,11 +1,11 @@
-package io.github.joyoungc.mybatis.model;
+package io.github.joyoungc.common.model;
 
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-// @Alias("Product")
 @Builder
+@Getter @Setter
 public class Product {
 	private String productId;
 	private String productName;

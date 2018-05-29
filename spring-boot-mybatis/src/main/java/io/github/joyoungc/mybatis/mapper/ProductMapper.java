@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import io.github.joyoungc.mybatis.model.Product;
+import io.github.joyoungc.common.model.Product;
 
 @Mapper
 public interface ProductMapper {
