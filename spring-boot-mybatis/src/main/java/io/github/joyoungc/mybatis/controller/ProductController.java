@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.github.joyoungc.mybatis.model.Product;
+import io.github.joyoungc.common.model.Product;
 import io.github.joyoungc.mybatis.service.ProductService;
 
 @RestController

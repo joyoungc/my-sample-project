@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import io.github.joyoungc.common.exception.NoDataFoundException;
 import lombok.extern.slf4j.Slf4j;
 
+import static io.github.joyoungc.common.Codes.Error;
+
 @ControllerAdvice
 @Slf4j
 public class ExceptionHandlerAdvice {

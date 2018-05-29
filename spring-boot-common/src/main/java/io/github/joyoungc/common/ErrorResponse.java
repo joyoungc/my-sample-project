@@ -1,8 +1,8 @@
 package io.github.joyoungc.common;
 
+import static io.github.joyoungc.common.Codes.Error;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import io.github.joyoungc.common.Error;;
 
 @JsonInclude(Include.NON_NULL)
 public class ErrorResponse {

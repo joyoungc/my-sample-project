@@ -42,13 +42,6 @@
 			<artifactId>nekohtml</artifactId>
 		</dependency>
 
-		<!-- hot swapping, disable cache for template, enable live reload -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<optional>true</optional>
-		</dependency>
-
 		<!-- Optional, for bootstrap -->
 		<dependency>
 			<groupId>org.webjars</groupId>
