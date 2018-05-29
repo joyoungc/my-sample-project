@@ -1,4 +1,4 @@
-package io.github.joyoungc.swagger;
+package io.github.joyoungc.swagger.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
