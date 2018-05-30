@@ -6,14 +6,14 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>spring-boot-redis</artifactId>
 	<packaging>jar</packaging>
-	<name>spring-boot-redis-test</name>
+	<name>spring-boot-redis</name>
 
 	<parent>
 		<groupId>io.github.joyoungc</groupId>
 		<artifactId>spring-boot-multi-module-parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<!--  주석추가 -->
+	
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
