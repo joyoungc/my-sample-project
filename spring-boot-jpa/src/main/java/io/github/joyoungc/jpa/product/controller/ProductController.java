@@ -2,7 +2,6 @@ package io.github.joyoungc.jpa.product.controller;
 
 import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -24,8 +23,11 @@ import io.github.joyoungc.jpa.product.service.ProductService;
 @RequestMapping("/products")
 public class ProductController {
 
-	@Autowired
-	private ProductService productService;
+	private final ProductService productService;
+	
+	public ProductController(ProductService productService) {
+		this.productService = productService;
+	}
 
 	@PostMapping
 	@ResponseStatus(value = HttpStatus.CREATED)

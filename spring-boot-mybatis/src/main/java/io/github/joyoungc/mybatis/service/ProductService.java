@@ -2,7 +2,6 @@ package io.github.joyoungc.mybatis.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,8 +12,11 @@ import io.github.joyoungc.mybatis.mapper.ProductMapper;
 @Service
 public class ProductService {
 
-	@Autowired
-	private ProductMapper productMapper;
+	private final ProductMapper productMapper;
+	
+	public ProductService(ProductMapper productMapper) {
+		this.productMapper = productMapper;
+	}
 
 	public Product getProduct(String productId) {
 		Product product = productMapper.getProduct(productId);

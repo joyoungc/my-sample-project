@@ -2,7 +2,6 @@ package io.github.joyoungc.swagger.api.product.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,8 +25,11 @@ import io.swagger.annotations.ApiOperation;
 @RequestMapping("/mobile/products")
 public class ProductController {
 
-	@Autowired
-	ProductService productService;
+	private final ProductService productService;
+	
+	public ProductController(ProductService productService) {
+		this.productService = productService;
+	}
 
 	@ApiOperation(value = Constants.PRODUCT + "조회")
 	@GetMapping("/{productId}")

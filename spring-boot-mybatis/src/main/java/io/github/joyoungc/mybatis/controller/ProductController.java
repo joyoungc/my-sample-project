@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,9 +19,12 @@ import io.github.joyoungc.mybatis.service.ProductService;
 @RestController
 @RequestMapping("/products")
 public class ProductController {
-
-	@Autowired
-	ProductService productService;
+	
+	private final ProductService productService;
+	
+	public ProductController(ProductService productService) {
+		this.productService = productService;
+	}
 
 	@RequestMapping(value = "/{productId}", method = RequestMethod.GET)
 	public Product getProduct(@PathVariable String productId) {

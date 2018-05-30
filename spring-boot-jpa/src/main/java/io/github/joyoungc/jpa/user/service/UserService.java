@@ -2,8 +2,6 @@ package io.github.joyoungc.jpa.user.service;
 
 import java.util.Date;
 
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -20,11 +18,11 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class UserService {
 
-	@Autowired
-	ModelMapper modelMapper;
-
-	@Autowired
-	private UserRepository repository;
+	private final UserRepository repository;
+	
+	public UserService(UserRepository repository) {
+		this.repository = repository;
+	}
 
 	public ProductDTO.Response getUser(Long id) {
 		return CommonMapper.toModel(repository.getOne(id), ProductDTO.Response.class);
