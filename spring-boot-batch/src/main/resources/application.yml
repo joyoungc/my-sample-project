@@ -1,0 +1,18 @@
+spring:
+  batch:
+    job:
+      enabled: false
+
+logging:
+  level:
+    io.github.joyoungc.batch: DEBUG
+
+batch:
+  target-url: http://localhost:9000
+  core-task-pool-size: 50
+  max-task-pool-size: 100
+  chunk-size: 100
+  
+rest:
+  read-timeout: 3000
+  connect-timeout: 3000 
