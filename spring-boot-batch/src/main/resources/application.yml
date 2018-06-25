@@ -2,6 +2,11 @@ spring:
   batch:
     job:
       enabled: false
+  datasource:
+    hikari:
+      idle-timeout: 10000
+      maximum-pool-size: 50
+      minimum-idle: 20
 
 logging:
   level:
@@ -14,5 +19,6 @@ batch:
   chunk-size: 100
   
 rest:
+  trans-type: async
   read-timeout: 3000
   connect-timeout: 3000 

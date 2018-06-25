@@ -72,7 +72,7 @@ public class UserBatchConfig {
 	@StepScope
 	public FlatFileItemReader<User> reader(@Value("#{jobParameters['targetFile']}") String targetFile) {
 		FlatFileItemReader<User> reader = new FlatFileItemReader<>();
-		reader.setResource(new ClassPathResource(targetFile));
+		reader.setResource(new ClassPathResource("data/" + targetFile));
 		reader.setLineMapper(new DefaultLineMapper<User>() {
 			{
 				setLineTokenizer(new DelimitedLineTokenizer("|") {

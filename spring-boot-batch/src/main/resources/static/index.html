@@ -166,19 +166,22 @@
 			var $div = $('.alert', $(this).closest("div")), 
 				seq = this.value, 
 				fileName = "test-data" + seq + ".dat";
-
+	
 			$.post("/load/start/" + fileName,
 				function(data) {
-					$div.show();
 					$('span', $div).text("job id " + data + " started...");
+					$div.show();
 				}).done(function() {
 					// alert("second success");
 				}).fail(function(jqXHR, textStatus, errorThrown) {
-					alert(textStatus);
-					console.log(JSON.stringify(jqXHR));
+					if ( $div.hasClass('alert-success') ) {
+						$div.removeClass('alert-success').addClass('alert-danger');
+				    }
+					$('span', $div).text("job failed!! : " + $.parseJSON(jqXHR.responseText).message);
+					$div.show();
 				});
-			});
-
+		});
+	
 	});
 </script>
 </html>

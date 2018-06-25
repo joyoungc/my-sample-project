@@ -3,6 +3,7 @@ package io.github.joyoungc.batch.config;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+import io.github.joyoungc.batch.config.Constants.TransType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -31,5 +32,6 @@ public class BatchProperties {
 	public static class Rest {
 		private int readTimeout;
 		private int connectTimeout;
+		private TransType transType;
 	}
 }
