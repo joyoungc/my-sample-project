@@ -5,6 +5,5 @@ spring:
 #    password: redis-twd # Login password of the redis server.
 #    database: 0 # Database index used by the connection factory.
 
-
 server:
   port: 9060
