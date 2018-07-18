@@ -41,18 +41,18 @@ public class ProductController {
 	}
 	
 	@GetMapping("/{productId}") 
-	public ProductDTO.Response getProduct(@PathVariable String productId) {
+	public ProductDTO.Response getProduct(@PathVariable Long productId) {
 		return productService.getProduct(productId);
 	}
 	
 	@PutMapping("/{productId}")
-	public ProductDTO.Response updateProduct(@PathVariable String productId, @RequestBody @Valid ProductDTO.Update product) {
+	public ProductDTO.Response updateProduct(@PathVariable Long productId, @RequestBody @Valid ProductDTO.Update product) {
 		return productService.updateProduct(productId, product);
 	}
 	
 	@DeleteMapping("/{productId}")
 	@ResponseStatus(value = HttpStatus.NO_CONTENT)
-	public void deleteProduct(@PathVariable String productId) {
+	public void deleteProduct(@PathVariable Long productId) {
 		productService.deleteProduct(productId);
 	}
 

@@ -11,17 +11,19 @@ import javax.persistence.TemporalType;
 
 import lombok.Data;
 
-@Entity
 @Data
+@Entity
 @Table(name = "product")
 public class Product {
 	
 	@Id
 	@GeneratedValue
-	private String productId;
+	private Long productId;
 	
 	private String productName;
+	
 	private Integer price;
+	
 	private String description;
 	
 	@Temporal(TemporalType.TIMESTAMP)
