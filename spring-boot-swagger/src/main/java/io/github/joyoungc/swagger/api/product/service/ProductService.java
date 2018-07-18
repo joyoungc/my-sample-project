@@ -1,5 +1,6 @@
 package io.github.joyoungc.swagger.api.product.service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
@@ -14,12 +15,12 @@ import io.github.joyoungc.swagger.api.product.model.ProductDTO;
 @Service
 public class ProductService {
 
-	private final List<Product> products = Arrays.asList(
+	private List<Product> products = new ArrayList<Product>(Arrays.asList(
 			Product.builder().productId("P100001").productName("Galaxy S7").price(800000).description("갤럭시S7").build(),
 			Product.builder().productId("P100002").productName("iPhone 7").price(950000).description("아이폰7").build(),
 			Product.builder().productId("P100003").productName("LG G6").price(540000).description("엘지G6").build(),
 			Product.builder().productId("P100004").productName("Sony XPERIA XZ Premium").price(600000)
-					.description("소니 엑스페리아XZ").build());
+					.description("소니 엑스페리아XZ").build()));
 
 	public ProductDTO.Response getProduct(String productId) {
 		return CommonMapper.toModel(products.stream().filter(p -> p.getProductId().equals(productId)).findFirst()

@@ -26,7 +26,7 @@ public class ExceptionHandlerAdvice {
 	@ResponseBody
 	public ErrorResponse internalServerError(HttpServletRequest req, Exception ex) {
 		log.error("##### internalServerError #####");
-		log.error("Request: {}, raised: {}", req.getRequestURL(), ex.getMessage());
+		log.error("Request: {}, raised: {}", req.getRequestURL(), ex);
 		ErrorResponse errorResponse = new ErrorResponse(Error.INTERNAL_SERVER_ERROR);
 		errorResponse.setCause(ex.getMessage());
 		return errorResponse;
