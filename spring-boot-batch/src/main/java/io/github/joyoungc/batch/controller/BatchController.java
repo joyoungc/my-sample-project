@@ -29,7 +29,7 @@ public class BatchController {
 	@Autowired
 	private Job userJob;
 
-	@PostMapping("/load/start/{fileName}")
+	@PostMapping("/user/start/{fileName}")
 	public String startTest(@PathVariable("fileName") String fileName) throws Exception {
 		log.info("## Target File Name : {}", fileName);
 		JobParameters params = new JobParametersBuilder().addString("targetFile", fileName)

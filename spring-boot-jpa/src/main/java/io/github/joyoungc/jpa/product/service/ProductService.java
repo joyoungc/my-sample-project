@@ -24,7 +24,7 @@ public class ProductService {
 		this.repository = repository;
 	}
 
-	public ProductDTO.Response getProduct(String productId) {
+	public ProductDTO.Response getProduct(Long productId) {
 		return CommonMapper.toModel(repository.getOne(productId), ProductDTO.Response.class);
 	}
 
@@ -43,7 +43,7 @@ public class ProductService {
 		return CommonMapper.toModel(repository.save(product), ProductDTO.Response.class);
 	}
 
-	public ProductDTO.Response updateProduct(String productId, ProductDTO.Update dto) {
+	public ProductDTO.Response updateProduct(Long productId, ProductDTO.Update dto) {
 		Product dest = repository.getOne(productId);
 		if (dest == null)
 			throw new NoDataFoundException();
@@ -54,7 +54,7 @@ public class ProductService {
 		return CommonMapper.toModel(product, ProductDTO.Response.class);
 	}
 
-	public void deleteProduct(String productId) {
+	public void deleteProduct(Long productId) {
 		Product dest = repository.getOne(productId);
 		if (dest == null)
 			throw new NoDataFoundException();

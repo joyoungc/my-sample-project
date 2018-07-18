@@ -18,7 +18,7 @@ public class UserItemWriter implements ItemWriter<User> {
 	@Override
 	public void write(List<? extends User> items) throws Exception {
 		// TODO 필요시 후처리 차후 등록
-		// log.debug("## write size : {}", items.size());
+		log.debug("## write size : {}", items.size());
 	}
 
 }

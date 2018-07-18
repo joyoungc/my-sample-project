@@ -8,6 +8,9 @@ spring:
       maximum-pool-size: 50
       minimum-idle: 20
 
+server:
+  port: 9030
+
 logging:
   level:
     io.github.joyoungc.batch: DEBUG
