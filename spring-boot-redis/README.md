@@ -4,6 +4,7 @@ Spring Boot 기반 Redis 관련 프로젝트 입니다.
 
 ## 구현사항
 - Embedded Redis 구성 (https://github.com/ozimov/embedded-redis)
+- Redis를 이용한 Spring Session 구현 
 
 ## 개발환경
 | Environment |  Version |

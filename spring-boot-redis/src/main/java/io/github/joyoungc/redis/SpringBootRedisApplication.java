@@ -5,11 +5,13 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 
 import io.github.joyoungc.redis.model.Product;
 import io.github.joyoungc.redis.repository.ProductRepository;
 
 @SpringBootApplication
+@EnableRedisHttpSession
 public class SpringBootRedisApplication {
 
 	public static void main(String[] args) {

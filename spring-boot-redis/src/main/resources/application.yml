@@ -4,6 +4,8 @@ spring:
     port: 6379 # Redis server port.
 #    password: redis-twd # Login password of the redis server.
 #    database: 0 # Database index used by the connection factory.
+  session:
+    store-type: redis
 
 server:
   port: 9060
