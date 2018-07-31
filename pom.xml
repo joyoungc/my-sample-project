@@ -11,6 +11,8 @@
 	<name>spring-boot-multi-module</name>
 
 	<modules>
+		<module>spring-boot-batch</module>
+		<module>spring-boot-cloud</module>
 		<module>spring-boot-common</module>
 		<module>spring-boot-environment</module>
 		<module>spring-boot-jpa</module>
@@ -25,7 +27,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.3.RELEASE</version>
+		<version>2.0.4.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	
