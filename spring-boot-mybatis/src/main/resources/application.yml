@@ -1,3 +1,6 @@
+server:
+  port: 9000
+  
 spring:
   datasource.schema: classpath:import.sql
   
@@ -21,6 +24,3 @@ logging:
     org.springframework.web: DEBUG
     io.github.joyoungc.mybatis: TRACE
     org.springframework.jdbc: DEBUG
-
-server:
-  port: 9000

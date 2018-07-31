@@ -1,3 +1,6 @@
+server:
+  port: 9000 
+
 logging:
   level:
     root: INFO
@@ -11,8 +14,6 @@ spring:
     multipart:
       max-file-size: 5MB
       max-request-size: 5MB
-          
-server:
-  port: 9000 
-  
-  
+  devtools:
+    livereload:
+      enabled: true    
