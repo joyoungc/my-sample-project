@@ -9,6 +9,7 @@
 .settings
 .springBeans
 .sts4-cache
+/.externalToolBuilders/
 
 ### IntelliJ IDEA ###
 .idea
@@ -23,3 +24,4 @@
 /dist/
 /nbdist/
 /.nb-gradle/
+

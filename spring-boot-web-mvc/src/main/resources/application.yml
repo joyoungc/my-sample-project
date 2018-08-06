@@ -7,7 +7,7 @@ logging:
     io.github.joyoungc: DEBUG
     org.springframework:
       web: DEBUG
-      boot.autoconfigure.logging: DEBUG
+      boot.autoconfigure.logging: INFO
     
 spring:
   servlet:
@@ -16,4 +16,4 @@ spring:
       max-request-size: 5MB
   devtools:
     livereload:
-      enabled: true    
+      enabled: true
