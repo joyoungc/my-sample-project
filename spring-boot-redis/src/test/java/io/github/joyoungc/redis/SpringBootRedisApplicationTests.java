@@ -64,8 +64,4 @@ public class SpringBootRedisApplicationTests {
 		
 	}
 	
-	public void testSubString() {
-		String t = "SESSION=NWZhMDE4YzctYzdlOS00N2I0LTkwY2ItNzA4OWIxNDU0MTE3; Path=/; HttpOnly";
-	}
-
 }
