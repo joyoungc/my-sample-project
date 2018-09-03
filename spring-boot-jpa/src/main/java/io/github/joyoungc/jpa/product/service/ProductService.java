@@ -1,6 +1,6 @@
 package io.github.joyoungc.jpa.product.service;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -37,7 +37,7 @@ public class ProductService {
 
 	public ProductDTO.Response createProduct(ProductDTO.Create dto) {
 		Product product = CommonMapper.toModel(dto, Product.class);
-		Date today = new Date();
+		LocalDateTime today = LocalDateTime.now();
 		product.setCreateDate(today);
 		product.setUpdateDate(today);
 		return CommonMapper.toModel(repository.save(product), ProductDTO.Response.class);

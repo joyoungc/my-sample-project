@@ -24,42 +24,4 @@ public class UserService {
 		this.repository = repository;
 	}
 
-	public ProductDTO.Response getUser(Long id) {
-		return CommonMapper.toModel(repository.getOne(id), ProductDTO.Response.class);
-	}
-
-	public Page<ProductDTO.Response> selectUsers(Pageable pageable) {
-		log.info("## selectProducts");
-		Page<User> page = repository.findAll(pageable);
-		return new PageImpl<>(CommonMapper.toList(page.getContent(), ProductDTO.Response.class), pageable,
-				page.getTotalElements());
-	}
-
-	public ProductDTO.Response createUser(ProductDTO.Create dto) {
-		User product = CommonMapper.toModel(dto, User.class);
-		Date today = new Date();
-		product.setCreateDate(today);
-		product.setUpdateDate(today);
-		return CommonMapper.toModel(repository.save(product), ProductDTO.Response.class);
-	}
-
-	public ProductDTO.Response updateProduct(Long id, ProductDTO.Update dto) {
-		User dest = repository.getOne(id);
-		if (dest == null)
-			throw new NoDataFoundException();
-
-		CommonMapper.updateModel(dto, dest);
-
-		User user = repository.save(dest);
-		return CommonMapper.toModel(user, ProductDTO.Response.class);
-	}
-
-	public void deleteProduct(Long id) {
-		User dest = repository.getOne(id);
-		if (dest == null)
-			throw new NoDataFoundException();
-
-		repository.delete(dest);
-	}
-
 }

@@ -1,16 +1,16 @@
 package io.github.joyoungc.jpa.user.model;
 
-import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
+import io.github.joyoungc.jpa.product.model.Dept;
+import io.github.joyoungc.jpa.product.model.Product;
 import lombok.Data;
 
 @Entity
@@ -19,23 +19,24 @@ import lombok.Data;
 public class User {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
-
-	@Column(unique = true, length = 30)
-	private String userName;
-
-	private String password;
-
+	private String userId;
+	
+	@Column(nullable=false)
+	private String name;
+	
 	@Column(length = 3)
 	private Integer age;
-
-	private String role;
 	
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date createDate;
+	private String email;
 	
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date updateDate;
+	private String birthday;
+	
+	/*
+	@OneToMany
+	List<Product> products;
+	
+	@ManyToMany
+	List<Dept> depts;
+	*/
 	
 }

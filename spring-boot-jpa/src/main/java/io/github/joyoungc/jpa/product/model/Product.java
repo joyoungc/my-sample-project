@@ -1,13 +1,12 @@
 package io.github.joyoungc.jpa.product.model;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import lombok.Data;
 
@@ -20,16 +19,16 @@ public class Product {
 	@GeneratedValue
 	private Long productId;
 	
+	@Column(nullable=false)
 	private String productName;
 	
+	@Column(nullable=false)
 	private Integer price;
 	
 	private String description;
 	
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date createDate;
+	private LocalDateTime createDate;
 	
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date updateDate;
+	private LocalDateTime updateDate;
 
 }
