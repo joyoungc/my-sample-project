@@ -29,7 +29,7 @@ public class SpringBootRedisApplicationTests {
 	private TestRestTemplate restTemplate;
 
 	@Test
-	public void contextLoads() {
+	public void testRedisSession() {
 		
 		ResponseEntity<String> response = this.restTemplate.exchange("/session", HttpMethod.GET, null, String.class);
 		

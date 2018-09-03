@@ -15,7 +15,7 @@ import redis.embedded.RedisServer;
 @Component
 public class EmbeddedRedisConfig {
 	
-	@Value("${spring.redis.port}")
+	@Value("${spring.redis.session.port}")
 	private int redisPort;
 
 	private RedisServer redisServer;
@@ -29,7 +29,9 @@ public class EmbeddedRedisConfig {
 
 	@PreDestroy
 	public void stopRedis() {
-		redisServer.stop();
+		if (redisServer != null) {
+			redisServer.stop();
+		}
 		log.info("## Embedded Redis Stop...");
 	}
 
