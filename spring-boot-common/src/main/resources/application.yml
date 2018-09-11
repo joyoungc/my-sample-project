@@ -1,0 +1,8 @@
+spring:
+  messages:
+    basename: messages/message
+    
+logging:
+  level:
+    org.springframework.boot.autoconfigure.logging: DEBUG
+    
