@@ -1,4 +1,4 @@
-package io.github.joyoungc.common.interceptor;
+package io.github.joyoungc.common.handler;
 
 import java.io.IOException;
 import java.nio.charset.Charset;

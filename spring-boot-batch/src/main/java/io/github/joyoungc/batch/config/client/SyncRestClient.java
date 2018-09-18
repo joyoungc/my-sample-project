@@ -14,7 +14,7 @@ import org.springframework.web.util.DefaultUriBuilderFactory;
 
 import io.github.joyoungc.batch.config.BatchProperties;
 import io.github.joyoungc.batch.config.Constants;
-import io.github.joyoungc.common.interceptor.RestClientLoggingInterceptor;
+import io.github.joyoungc.common.handler.RestClientLoggingInterceptor;
 import io.github.joyoungc.common.model.User;
 import lombok.extern.slf4j.Slf4j;
 

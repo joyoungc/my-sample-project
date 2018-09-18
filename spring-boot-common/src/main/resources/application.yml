@@ -2,7 +2,10 @@ spring:
   messages:
     basename: messages/message
     
-logging:
-  level:
-    org.springframework.boot.autoconfigure.logging: DEBUG
-    
+# logging:
+#   level:
+#     org.springframework.boot.autoconfigure.logging: INFO
+
+application:
+  exception:
+    default-error-code: COM0000

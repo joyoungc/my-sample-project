@@ -1,16 +1,10 @@
 package io.github.joyoungc.jpa.user.model;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import io.github.joyoungc.jpa.product.model.Dept;
-import io.github.joyoungc.jpa.product.model.Product;
 import lombok.Data;
 
 @Entity

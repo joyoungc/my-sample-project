@@ -1,4 +1,6 @@
-package io.github.joyoungc.common;
+package io.github.joyoungc.common.exception.handler;
+
+import java.nio.charset.Charset;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,25 +13,43 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.util.ContentCachingRequestWrapper;
 
+import io.github.joyoungc.common.Codes.Error;
+import io.github.joyoungc.common.ErrorResponse;
+import io.github.joyoungc.common.exception.BaseException;
 import io.github.joyoungc.common.exception.NoDataFoundException;
 import lombok.extern.slf4j.Slf4j;
 
-import static io.github.joyoungc.common.Codes.Error;
-
-@ControllerAdvice
 @Slf4j
+@ControllerAdvice
 public class ExceptionHandlerAdvice {
 
-	@ExceptionHandler(value = Exception.class)
+	@ExceptionHandler(value = Throwable.class)
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 	@ResponseBody
-	public ErrorResponse internalServerError(HttpServletRequest req, Exception ex) {
+	public ErrorResponse internalServerError(HttpServletRequest request, Exception ex) {
 		log.error("##### internalServerError #####");
-		log.error("Request: {}, raised: {}", req.getRequestURL(), ex);
+		log.error("Request: {}, raised: {}", request.getRequestURL(), ex.getMessage());
+		
 		ErrorResponse errorResponse = new ErrorResponse(Error.INTERNAL_SERVER_ERROR);
 		errorResponse.setCause(ex.getMessage());
 		return errorResponse;
+	}
+	
+	@ExceptionHandler(value = BaseException.class)
+	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+	@ResponseBody
+	public ErrorResponse baseExceptionError(HttpServletRequest request, BaseException ex) {
+		log.error("##### baseExceptionError #####");
+		log.error("Request: {}, raised: {}", request.getRequestURL(), ex.getMessage());
+		
+		if (request instanceof ContentCachingRequestWrapper) {
+			ContentCachingRequestWrapper cachingRequest = (ContentCachingRequestWrapper) request;
+			String requestBody = new String(cachingRequest.getContentAsByteArray(), Charset.defaultCharset());
+			log.error("Request Body : {}", requestBody);
+		}
+		return new ErrorResponse(Error.INTERNAL_SERVER_ERROR);
 	}
 
 	@ExceptionHandler(value = NoDataFoundException.class)
@@ -64,11 +84,10 @@ public class ExceptionHandlerAdvice {
 		return errorResponse;
 	}
 
-	@ExceptionHandler(value = {HttpRequestMethodNotSupportedException.class})
+	@ExceptionHandler(value = { HttpRequestMethodNotSupportedException.class })
 	@ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
 	@ResponseBody
-	public ErrorResponse methodNotSupportedError(HttpServletRequest req,
-			HttpRequestMethodNotSupportedException ex) {
+	public ErrorResponse methodNotSupportedError(HttpServletRequest req, HttpRequestMethodNotSupportedException ex) {
 		log.error("##### methodNotSupportedError #####");
 		log.error("Request: {}, raised: {}", req.getRequestURL(), ex.getMessage());
 		ErrorResponse errorResponse = new ErrorResponse(Error.METHOD_NOT_ALLOWED);

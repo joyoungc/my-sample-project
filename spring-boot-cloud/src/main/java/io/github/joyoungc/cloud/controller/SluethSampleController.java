@@ -41,6 +41,7 @@ public class SluethSampleController implements ApplicationListener<ServletWebSer
 		Thread.sleep(random.nextInt(1000));
 		String result = this.restTemplate.getForObject("http://localhost:" + this.localPort + "/sleuth/there",
 				String.class);
+		
 		return "hello " + result;
 	}
 
@@ -50,6 +51,7 @@ public class SluethSampleController implements ApplicationListener<ServletWebSer
 		int millis = this.random.nextInt(1000);
 		Thread.sleep(millis);
 		this.tracer.currentSpan().tag("random-sleep-millis", String.valueOf(millis));
+		// this.tracer.currentSpan().context().
 		return "there";
 	}
 

@@ -9,7 +9,7 @@ import org.springframework.http.client.BufferingClientHttpRequestFactory;
 import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
-import io.github.joyoungc.common.interceptor.RestClientLoggingInterceptor;
+import io.github.joyoungc.common.handler.RestClientLoggingInterceptor;
 
 @Configuration
 public class CommonConfig {

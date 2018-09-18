@@ -1,6 +1,7 @@
 package io.github.joyoungc.environment.config;
 
-import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
@@ -21,12 +22,12 @@ public class SampleAopConfig {
 		
 	}
 	
-	@After("springBeanPointcut()")
+	@AfterReturning("springBeanPointcut()")
 	public void testSpringBeanlogging() {
 		System.out.println("########## AOP 로깅 : springBeanPointcut() ##########");
 	}
 	
-	@After("samplePointcut()")
+	@AfterThrowing("samplePointcut()")
 	public void testSamplePointcutlogging() {
 		System.out.println("########## AOP 로깅 : samplePointcut() ##########");
 	}
