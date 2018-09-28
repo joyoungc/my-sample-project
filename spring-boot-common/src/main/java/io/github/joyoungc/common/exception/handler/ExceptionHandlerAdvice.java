@@ -1,16 +1,27 @@
 package io.github.joyoungc.common.exception.handler;
 
 import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.BeanFactoryUtils;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.core.annotation.AnnotationAwareOrderComparator;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.util.ContentCachingRequestWrapper;
@@ -18,13 +29,15 @@ import org.springframework.web.util.ContentCachingRequestWrapper;
 import io.github.joyoungc.common.Codes.Error;
 import io.github.joyoungc.common.ErrorResponse;
 import io.github.joyoungc.common.exception.BaseException;
+import io.github.joyoungc.common.exception.ExceptionProperties;
 import io.github.joyoungc.common.exception.NoDataFoundException;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @ControllerAdvice
-public class ExceptionHandlerAdvice {
+public class ExceptionHandlerAdvice implements InitializingBean {
 
+	/*
 	@ExceptionHandler(value = Throwable.class)
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 	@ResponseBody
@@ -36,6 +49,7 @@ public class ExceptionHandlerAdvice {
 		errorResponse.setCause(ex.getMessage());
 		return errorResponse;
 	}
+	*/
 	
 	@ExceptionHandler(value = BaseException.class)
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -94,5 +108,70 @@ public class ExceptionHandlerAdvice {
 		errorResponse.setCause(ex.getMessage());
 		return errorResponse;
 	}
+	
+	@Autowired
+    private ExceptionProperties exceptionProperties;
+ 
+    @Autowired
+    private ApplicationContext applicationContext;
+
+    @SuppressWarnings("rawtypes")
+    private List<ExceptionResponse> exceptionResponse = new ArrayList<>();
+ 
+    @ExceptionHandler(Throwable.class)
+    public ResponseEntity<Object> doResolveException(@RequestBody(required = false) final Object requestBodyAsString,
+            final HttpServletRequest request, final HttpServletResponse response, final Object handler,
+            final Exception ex) {
+        return this.createResponseEntity(request, response, ex);
+    }
+ 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+    private ResponseEntity<Object> createResponseEntity(final HttpServletRequest request,
+            final HttpServletResponse response, final Exception ex) {
+        for (ExceptionResponse m : exceptionResponse) {
+            if (m.isSupport(ex, request, response)) {
+                log.debug("{} is handled by {}", ex.getClass(), m.getClass().getName());
+                return m.handle(ex, request, response);
+            }
+        }
+        return new ResponseEntity<>(ex.getMessage(), null, exceptionProperties.getDefaultHttpStatusCode());
+    }
+ 
+    /*
+    @Override
+    protected ResponseEntity<Object> handleExceptionInternal(final Exception ex, final Object body,
+            final HttpHeaders headers, final HttpStatus status, final WebRequest request) {
+ 
+        if (HttpStatus.INTERNAL_SERVER_ERROR.equals(status)) {
+            request.setAttribute(WebUtils.ERROR_EXCEPTION_ATTRIBUTE, ex, WebRequest.SCOPE_REQUEST);
+        }
+ 
+        HttpServletRequest request2 = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
+                .getRequest();
+        ResponseEntity<Object> responseEntity = this.createResponseEntity(request2, null, ex);
+        return new ResponseEntity<>(responseEntity.getBody(), responseEntity.getHeaders(), status);
+    }
+    */
+ 
+    @SuppressWarnings("rawtypes")
+    @Override
+    public void afterPropertiesSet() throws Exception {
+ 
+        if (exceptionResponse != null) {
+            // Find all ExceptionResponse in the ApplicationContext, including
+            // ancestor contexts.
+            Map<String, ExceptionResponse> matchingBeans = BeanFactoryUtils
+                    .beansOfTypeIncludingAncestors(applicationContext, ExceptionResponse.class, true, false);
+            if (!matchingBeans.isEmpty()) {
+                this.exceptionResponse = new ArrayList<>(matchingBeans.values());
+                AnnotationAwareOrderComparator.sort(this.exceptionResponse);
+            }
+        }
+        if (exceptionResponse != null) {
+            for (ExceptionResponse er : exceptionResponse) {
+                log.info("add ExceptionResponse:{}", er.getClass());
+            }
+        }
+    }
 
 }
