@@ -9,3 +9,10 @@ RemoteSystemsTempFiles/
 **/.apt_generated
 **/.externalToolBuilders
 **/.factorypath
+
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
