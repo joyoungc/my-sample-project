@@ -5,8 +5,9 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import io.github.joyoungc.common.model.Product;
+import org.springframework.stereotype.Repository;
 
-@Mapper
+@Repository
 public interface ProductMapper {
 
 	Product getProduct(String productId);

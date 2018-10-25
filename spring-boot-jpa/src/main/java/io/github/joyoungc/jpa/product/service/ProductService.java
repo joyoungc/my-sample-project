@@ -2,6 +2,9 @@ package io.github.joyoungc.jpa.product.service;
 
 import java.time.LocalDateTime;
 
+import io.github.joyoungc.common.CommonError;
+import io.github.joyoungc.common.ErrorCode;
+import io.github.joyoungc.common.exception.ApplicationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -45,7 +48,7 @@ public class ProductService {
 	public ProductDTO.Response updateProduct(Long productId, ProductDTO.Update dto) {
 		Product dest = repository.getOne(productId);
 		if (dest == null)
-			throw new NoDataFoundException();
+			throw new ApplicationException(CommonError.COMMON_NOT_FOUND);
 
 		CommonMapper.updateModel(dto, dest);
 
@@ -56,7 +59,7 @@ public class ProductService {
 	public void deleteProduct(Long productId) {
 		Product dest = repository.getOne(productId);
 		if (dest == null)
-			throw new NoDataFoundException();
+			throw new ApplicationException(CommonError.COMMON_NOT_FOUND);
 
 		repository.delete(dest);
 	}

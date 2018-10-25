@@ -1,0 +1,259 @@
+= API 샘플 문서 가이드
+Aiden Jeong;
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 4
+:sectlinks:
+:operation-curl-request-title: Example request
+:operation-http-response-title: Example response
+
+
+[[overview]]
+= Overview
+
+Spring Rest Docs를 통해 생성한 API 샘플 문서입니다.
+[[overview-history]]
+== 수정 이력
+[cols="1,1,6a,1,1"]
+|===
+| 날짜 | version | 내용 | 담당자 | 비고
+
+| 2018.10.17
+| 0.0.1
+| Initial release
+| aiden.jeong
+| -
+
+| 2018.10.**
+| 0.0.2
+|
+- 뭐시기 조회 > response-fields 수정 +
+- 수정 또 수정 > 넣으면 됨
+| aiden.jeong
+|
+|===
+
+
+
+[[overview-common]]
+== 공통 사항
+
+API에 공통으로 들어가는 설정입니다.
+
+[[overview-common-domain]]
+=== Domain
+
+|===
+| 환경 | domain
+
+| 개발서버
+| `미정`
+
+| 스테이지서버
+| `미정`
+
+| 운영서버
+| `미정`
+|===
+
+[[overview-common-header]]
+=== Header
+
+|===
+| name | 설명
+
+
+| `Authorization`
+| API 사용 인증 키 (미구현)
+
+|===
+
+//
+//[[overview-common-body]]
+//=== 공통 Response Body
+//
+//|===
+//| field | 설명
+//
+//| `code`
+//| 응답 코드
+//
+//| `message`
+//| 응답 메세지(예외 사항 포함)
+//
+//| `result`
+//| 실제 반환될 데이터
+//|===
+
+
+[[overview-common-http-verbs]]
+=== HTTP METHOD
+
+HTTP 프로토콜은 다양한 메서드를 정의합니다. 해당 시스템에서 사용하는 HTTP 메서드는 다음과 같습니다.
+
+|===
+| Verb | Usage
+
+| `GET`
+| 해당 리소스를 조회합니다. 리소스를 조회하고 해당 도큐먼트에 대한 자세한 정보를 가져옵니다.
+
+| `POST`
+| POST를 통해 해당 URI를 요청하면 리소스를 생성합니다.
+
+| `PUT`
+| 해당 리소스를 수정합니다. 부분적인 Update시에도 적용됩니다.
+
+| `DELETE`
+|  리소스를 삭제합니다.
+|===
+
+[[overview-common-http-status-codes]]
+=== HTTP status codes
+
+클라이언트에서 요청 후 `처리 결과 값이 성공`일 경우 해당 시스템은 처리 결과 코드나 메세지를 `Body`에 포함하는 것이 아니고, HTTP Status로 표현을 합니다.
+
+|===
+| Status code | Usage
+
+| `200 OK`
+| 클라이언트의 요청을 정상적으로 수행함
+
+| `201 Created`
+| 클라이언트가 어떠한 리소스 생성을 요청, 해당 리소스가 성공적으로 생성됨 (POST를 통한 리소스 생성 작업 시)
+
+| `400 Bad Request`
+| 클라이언트의 요청이 부적절한 경우
+
+| `401 Unauthorized`
+| API 인증,인가 실패
+
+| `404 Not Found`
+| 요청한 리소스가 존재하지 않음
+
+| `500 Internal Server Error`
+| 서버 에러
+|===
+
+[[overview-common-errors]]
+=== Errors
+
+HTTP Status 가 400 이상(status code >= 400)으로 응답했을 때, Body에 해당 응답에 대한 에러코드 및 메세지가 포함된 JSON object가 표시됩니다.
+에러 응답값은 다음과 같은 구조입니다.
+
+include::{snippets}/error-example/response-fields.adoc[]
+
+예제) `400 Bad Request` response:
+
+include::{snippets}/error-example/http-response.adoc[]
+
+
+
+[[resources]]
+= Resources
+
+
+[[resources-product]]
+== 상품
+
+상품에 대한 조회, 등록, 수정, 삭제 기능을 제공합니다.
+
+[[resources-product-one]]
+=== 상품 조회
+
+단일 상품 데이터를 조회합니다.
+
+operation::get-product[snippets='path-parameters,response-fields,curl-request,http-response']
+
+
+[[resources-product-list]]
+=== 상품 목록 조회
+
+상품 목록을 조회합니다.
+
+operation::select-product[snippets='request-parameters,response-fields,curl-request,http-response']
+
+
+[[resources-product-create]]
+=== 상품 등록
+
+상품을 등록합니다.
+
+operation::create-product[snippets='request-fields,curl-request,http-response']
+
+
+[[resources-member]]
+== 회원
+
+회원 관련 데이터 조회 기능을 제공합니다.
+
+[[resources-member-one]]
+=== 회원 멤버십 조회
+
+회원에 대한 멤버십 정보를 조회합니다.
+
+operation::get-member-info[snippets='path-parameters,response-fields,curl-request,http-response']
+
+
+[[resources-point]]
+== 포인트
+
+포인트 적립/사용/취소 기능을 제공합니다.
+
+[[resources-point-use]]
+=== 포인트 사용
+
+멤버십 포인트를 사용합니다.
+
+operation::use-membership-point[snippets='path-parameters,request-fields,response-fields,curl-request,http-response']
+
+
+[[resources-point-cancel-use]]
+=== 포인트 사용취소
+
+사용한 멤버십 포인트를 취소합니다.
+
+operation::cancel-use-membership-point[snippets='path-parameters,request-fields,response-fields,curl-request,http-response']
+
+
+[[resources-point-save]]
+=== 포인트 적립
+
+멤버십 포인트를 적립합니다.
+
+operation::save-membership-point[snippets='path-parameters,request-fields,response-fields,curl-request,http-response']
+
+
+[[resources-point-cancel-save]]
+=== 포인트 적립취소
+
+적립한 멤버십 포인트를 취소합니다.
+
+operation::cancel-save-membership-point[snippets='path-parameters,request-fields,response-fields,curl-request,http-response']
+
+
+
+//==== Path parameters
+//
+//include::{snippets}/get-member-info/path-parameters.adoc[]
+//
+//
+//==== Request parameters
+//
+//include::{snippets}/get-member-info/request-parameters.adoc[]
+//
+//
+//==== Response result fields
+//
+//include::{snippets}/get-member-info/response-fields-result.adoc[]
+//
+//
+//==== Example request
+//
+//include::{snippets}/get-member-info/curl-request.adoc[]
+//
+//
+//==== Example response
+//
+//include::{snippets}/get-member-info/http-response.adoc[]
