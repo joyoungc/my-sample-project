@@ -16,11 +16,6 @@
 	<dependencies>
 		<dependency>
 			<groupId>io.github.joyoungc</groupId>
-			<artifactId>common-model</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>io.github.joyoungc</groupId>
 			<artifactId>spring-boot-common</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>

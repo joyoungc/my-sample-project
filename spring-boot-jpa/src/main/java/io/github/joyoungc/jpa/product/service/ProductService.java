@@ -7,7 +7,6 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import io.github.joyoungc.common.exception.NoDataFoundException;
 import io.github.joyoungc.common.mapper.CommonMapper;
 import io.github.joyoungc.jpa.product.model.Product;
 import io.github.joyoungc.jpa.product.model.ProductDTO;

@@ -1,7 +1,9 @@
 spring:
   messages:
     basename: messages/message
-    
+  jackson:
+    default-property-inclusion: non_null
+
 # logging:
 #   level:
 #     org.springframework.boot.autoconfigure.logging: INFO
@@ -9,3 +11,4 @@ spring:
 application:
   exception:
     default-error-code: COM0000
+

@@ -16,9 +16,6 @@ public class BaseException extends RuntimeException {
 
 	private String[] messageArgs;
 
-	public BaseException() {
-	}
-
 	public BaseException(String errorCode) {
 		this(errorCode, null, (String[]) null);
 	}

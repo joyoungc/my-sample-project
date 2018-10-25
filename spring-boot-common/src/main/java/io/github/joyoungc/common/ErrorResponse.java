@@ -1,44 +1,40 @@
 package io.github.joyoungc.common;
 
-import static io.github.joyoungc.common.Codes.Error;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.http.HttpStatus;
 
-@JsonInclude(Include.NON_NULL)
+import java.util.List;
+
+/**
+ * {“status”:”401”,”message”:”Authenticate”,”code”:200003,”more info”:”http://www.twillo.com/docs/errors/20003"}
+ */
+@Getter
+@Setter
 public class ErrorResponse {
-	private int code;
-	private String message;	
-	private String cause;
-	
-	public ErrorResponse() {}
-	
-	public ErrorResponse(Error error) {
-		this.code = error.getCode();
-		this.message = error.getDescription();
-	}
 
-	public String getMessage() {
-		return message;
-	}
+    public ErrorResponse() {
+    }
 
-	public void setMessage(String message) {
-		this.message = message;
-	}
+    public ErrorResponse(String code, HttpStatus status) {
+        this.code = code;
+        this.status = status;
+    }
 
-	public int getCode() {
-		return code;
-	}
+    public ErrorResponse(String code, String message, HttpStatus status) {
+        this.code = code;
+        this.message = message;
+        this.status = status;
+    }
 
-	public void setCode(int code) {
-		this.code = code;
-	}
+    private String code;
+    private String message;
+    private HttpStatus status;
+    private String traceId;
+    private List<String> errors;
 
-	public String getCause() {
-		return cause;
-	}
-
-	public void setCause(String cause) {
-		this.cause = cause;
-	}
+    public int getStatus() {
+        return status.value();
+    }
 
 }

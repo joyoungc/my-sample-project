@@ -5,9 +5,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
+import io.github.joyoungc.common.exception.BaseException;
 import org.springframework.stereotype.Service;
 
-import io.github.joyoungc.common.exception.NoDataFoundException;
 import io.github.joyoungc.common.mapper.CommonMapper;
 import io.github.joyoungc.common.model.Product;
 import io.github.joyoungc.swagger.api.product.model.ProductDTO;
@@ -24,7 +24,7 @@ public class ProductService {
 
 	public ProductDTO.Response getProduct(String productId) {
 		return CommonMapper.toModel(products.stream().filter(p -> p.getProductId().equals(productId)).findFirst()
-				.orElseThrow(NoDataFoundException::new), ProductDTO.Response.class);
+				.orElseThrow(() -> new BaseException("COM0004")), ProductDTO.Response.class);
 	}
 
 	public List<ProductDTO.Response> selectProducts() {
@@ -41,7 +41,7 @@ public class ProductService {
 	public void updateProduct(ProductDTO.Update product) {
 		boolean removed = products.removeIf(p -> p.getProductId().equals(product.getProductId()));
 		if (!removed) {
-			throw new NoDataFoundException();
+			throw new BaseException("COM0004");
 		}
 		products.add(CommonMapper.toModel(product, Product.class));
 		products.sort((o1, o2) -> o1.getProductId().compareTo(o2.getProductId()));
@@ -50,7 +50,7 @@ public class ProductService {
 	public void deleteProduct(String productId) {
 		boolean removed = products.removeIf(p -> p.getProductId().equals(productId));
 		if (!removed) {
-			throw new NoDataFoundException();
+			throw new BaseException("COM0004");
 		}
 	}
 

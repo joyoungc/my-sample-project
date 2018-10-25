@@ -1,5 +1,6 @@
 package io.github.joyoungc.web;
 
+import io.github.joyoungc.common.Codes;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
