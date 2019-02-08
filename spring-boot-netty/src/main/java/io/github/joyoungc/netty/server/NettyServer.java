@@ -22,65 +22,65 @@ import io.netty.util.CharsetUtil;
 
 @Component
 public class NettyServer {
-	
+
     @Value("${netty.tcp.port}")
     private int tcpPort;
- 
+
     @Value("${netty.boss.thread.count}")
     private int bossCount;
- 
+
     @Value("${netty.worker.thread.count}")
     private int workerCount;
-    
+
     @Value("${netty.so.keepalive}")
     private boolean isKeepAlive;
-    
+
     @Value("${netty.so.backlog}")
     private int backLog;
-    
+
     private static final ChatServerHandler SERVICE_HANDLER = new ChatServerHandler();
     // private static final ServerHandler SERVICE_HANDLER = new ServerHandler();
-    
+
     public void start() {
-    	
-		// server 환경설정
-		EventLoopGroup bossGroup = new NioEventLoopGroup(bossCount);
-		EventLoopGroup workerGroup = new NioEventLoopGroup();
 
-		try {
+        // server 환경설정
+        EventLoopGroup bossGroup = new NioEventLoopGroup(bossCount);
+        EventLoopGroup workerGroup = new NioEventLoopGroup();
 
-			ServerBootstrap b = new ServerBootstrap();
-			b.group(bossGroup, workerGroup)
-				.channel(NioServerSocketChannel.class)
-				.childHandler(new ChannelInitializer<SocketChannel>() {
-					@Override
-					public void initChannel(SocketChannel ch) throws Exception {
-						ChannelPipeline pipeline = ch.pipeline();
-						pipeline.addLast(new StringDecoder(CharsetUtil.UTF_8));
-						pipeline.addLast(new StringEncoder(CharsetUtil.UTF_8));
-						pipeline.addLast(new LoggingHandler(LogLevel.INFO));
-						pipeline.addLast(SERVICE_HANDLER);
-					}					
-				})				
-				.option(ChannelOption.SO_BACKLOG, backLog)
-				.childOption(ChannelOption.SO_KEEPALIVE, true);
-			
-			ChannelFuture channelFuture = b.bind(tcpPort).sync();
-			channelFuture.channel().closeFuture().sync();
-		} catch (InterruptedException e){
-			e.printStackTrace();
-		} finally {
-			bossGroup.shutdownGracefully();
-			workerGroup.shutdownGracefully();
-		}
-    	
+        try {
+
+            ServerBootstrap b = new ServerBootstrap();
+            b.group(bossGroup, workerGroup)
+                    .channel(NioServerSocketChannel.class)
+                    .childHandler(new ChannelInitializer<SocketChannel>() {
+                        @Override
+                        public void initChannel(SocketChannel ch) throws Exception {
+                            ChannelPipeline pipeline = ch.pipeline();
+                            pipeline.addLast(new StringDecoder(CharsetUtil.UTF_8));
+                            pipeline.addLast(new StringEncoder(CharsetUtil.UTF_8));
+                            pipeline.addLast(new LoggingHandler(LogLevel.INFO));
+                            pipeline.addLast(SERVICE_HANDLER);
+                        }
+                    })
+                    .option(ChannelOption.SO_BACKLOG, backLog)
+                    .childOption(ChannelOption.SO_KEEPALIVE, true);
+
+            ChannelFuture channelFuture = b.bind(tcpPort).sync();
+            channelFuture.channel().closeFuture().sync();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            bossGroup.shutdownGracefully();
+            workerGroup.shutdownGracefully();
+        }
+
     }
-    
+
     public void sendMessageToChannels(String msg) {
-    	ChannelGroup channels =	SERVICE_HANDLER.getChannels();
-		for (Channel c : channels) {
-			c.writeAndFlush("[broadCast] " + msg + '\n');
-		}
+        ChannelGroup channels = SERVICE_HANDLER.getChannels();
+        for (Channel c : channels) {
+            c.writeAndFlush("[broadCast] " + msg + '\n');
+        }
     }
-	
+
 }

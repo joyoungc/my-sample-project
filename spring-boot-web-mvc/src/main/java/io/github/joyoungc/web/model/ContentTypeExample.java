@@ -8,10 +8,10 @@ import javax.validation.constraints.NotNull;
 @Data
 public class ContentTypeExample {
 
-	@NotNull
-	private Long id;
-	@NotBlank
-	private String title;
-	private String content;
-	
+    @NotNull
+    private Long id;
+    @NotBlank
+    private String title;
+    private String content;
+
 }

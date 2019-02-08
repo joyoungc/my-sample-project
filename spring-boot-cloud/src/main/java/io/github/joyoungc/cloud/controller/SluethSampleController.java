@@ -14,7 +14,7 @@ import brave.Tracer;
 import lombok.extern.slf4j.Slf4j;
 
 /***
- * 
+ *
  * @author joyoungc
  * @date 2018.08.
  *
@@ -24,41 +24,41 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/sleuth")
 public class SluethSampleController implements ApplicationListener<ServletWebServerInitializedEvent> {
 
-	@Autowired
-	private RestTemplate restTemplate;
+    @Autowired
+    private RestTemplate restTemplate;
 
-	@Autowired
-	private Tracer tracer;
+    @Autowired
+    private Tracer tracer;
 
-	Random random = new Random();
-	
-	private int localPort;
+    Random random = new Random();
 
-	@GetMapping("/hello")
-	public String hello() throws InterruptedException {
-		log.info("## hello");
-		Random random = new Random();
-		Thread.sleep(random.nextInt(1000));
-		String result = this.restTemplate.getForObject("http://localhost:" + this.localPort + "/sleuth/there",
-				String.class);
-		
-		return "hello " + result;
-	}
+    private int localPort;
 
-	@GetMapping("/there")
-	public String there() throws InterruptedException {
-		log.info("## there");
-		int millis = this.random.nextInt(1000);
-		Thread.sleep(millis);
-		this.tracer.currentSpan().tag("random-sleep-millis", String.valueOf(millis));
-		// this.tracer.currentSpan().context().
-		return "there";
-	}
+    @GetMapping("/hello")
+    public String hello() throws InterruptedException {
+        log.info("## hello");
+        Random random = new Random();
+        Thread.sleep(random.nextInt(1000));
+        String result = this.restTemplate.getForObject("http://localhost:" + this.localPort + "/sleuth/there",
+                String.class);
 
-	@Override
-	public void onApplicationEvent(ServletWebServerInitializedEvent event) {
-		this.localPort = event.getSource().getPort();
-		log.info("## local port : {}", localPort);
-	}
+        return "hello " + result;
+    }
+
+    @GetMapping("/there")
+    public String there() throws InterruptedException {
+        log.info("## there");
+        int millis = this.random.nextInt(1000);
+        Thread.sleep(millis);
+        this.tracer.currentSpan().tag("random-sleep-millis", String.valueOf(millis));
+        // this.tracer.currentSpan().context().
+        return "there";
+    }
+
+    @Override
+    public void onApplicationEvent(ServletWebServerInitializedEvent event) {
+        this.localPort = event.getSource().getPort();
+        log.info("## local port : {}", localPort);
+    }
 
 }

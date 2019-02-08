@@ -20,47 +20,47 @@ import io.github.joyoungc.swagger.api.product.service.ProductService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-@Api(tags = { Constants.API_TAG_PRODUCT })
+@Api(tags = {Constants.API_TAG_PRODUCT})
 @RestController
 @RequestMapping("/mobile/products")
 public class ProductController {
 
-	private final ProductService productService;
-	
-	public ProductController(ProductService productService) {
-		this.productService = productService;
-	}
+    private final ProductService productService;
 
-	@ApiOperation(value = Constants.PRODUCT + "조회")
-	@GetMapping("/{productId}")
-	public ProductDTO.Response getProduct(@PathVariable String productId) {
-		return productService.getProduct(productId);
-	}
+    public ProductController(ProductService productService) {
+        this.productService = productService;
+    }
 
-	@ApiOperation(value = Constants.PRODUCT + "목록조회")
-	@GetMapping
-	public List<ProductDTO.Response> selectProducts() {
-		return productService.selectProducts();
-	}
+    @ApiOperation(value = Constants.PRODUCT + "조회")
+    @GetMapping("/{productId}")
+    public ProductDTO.Response getProduct(@PathVariable String productId) {
+        return productService.getProduct(productId);
+    }
 
-	@ApiOperation(value = Constants.PRODUCT + "등록")
-	@PostMapping
-	@ResponseStatus(value = HttpStatus.CREATED)
-	public ProductDTO.Response createProduct(@RequestBody @Validated ProductDTO.Create product) {
-		return productService.createProduct(product);
-	}
+    @ApiOperation(value = Constants.PRODUCT + "목록조회")
+    @GetMapping
+    public List<ProductDTO.Response> selectProducts() {
+        return productService.selectProducts();
+    }
 
-	@ApiOperation(value = Constants.PRODUCT + "수정")
-	@PutMapping("/{productId}")
-	public void updateProduct(@PathVariable String productId, @RequestBody @Validated ProductDTO.Update product) {
-		product.setProductId(productId);
-		productService.updateProduct(product);
-	}
+    @ApiOperation(value = Constants.PRODUCT + "등록")
+    @PostMapping
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public ProductDTO.Response createProduct(@RequestBody @Validated ProductDTO.Create product) {
+        return productService.createProduct(product);
+    }
 
-	@ApiOperation(value = Constants.PRODUCT + "삭제")
-	@DeleteMapping("/{productId}")
-	public void deleteProduct(@PathVariable String productId) {
-		productService.deleteProduct(productId);
-	}
+    @ApiOperation(value = Constants.PRODUCT + "수정")
+    @PutMapping("/{productId}")
+    public void updateProduct(@PathVariable String productId, @RequestBody @Validated ProductDTO.Update product) {
+        product.setProductId(productId);
+        productService.updateProduct(product);
+    }
+
+    @ApiOperation(value = Constants.PRODUCT + "삭제")
+    @DeleteMapping("/{productId}")
+    public void deleteProduct(@PathVariable String productId) {
+        productService.deleteProduct(productId);
+    }
 
 }

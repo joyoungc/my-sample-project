@@ -8,7 +8,6 @@ import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 /**
- *
  * @author joyoungc
  * @date 2018.06.15
  */
@@ -16,24 +15,24 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 @EnableBatchProcessing
 public class BatchConfig {
 
-	@Autowired
-	private BatchProperties prop;
+    @Autowired
+    private BatchProperties prop;
 
-	@Bean(name = Constants.STEP_TASK_EXECUTOR)
-	public TaskExecutor batchExecutor() {
-		ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-		executor.setCorePoolSize(prop.getBatch().getCoreTaskPoolSize());
-		executor.setMaxPoolSize(prop.getBatch().getMaxTaskPoolSize());
-		return executor;
-	}
+    @Bean(name = Constants.STEP_TASK_EXECUTOR)
+    public TaskExecutor batchExecutor() {
+        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+        executor.setCorePoolSize(prop.getBatch().getCoreTaskPoolSize());
+        executor.setMaxPoolSize(prop.getBatch().getMaxTaskPoolSize());
+        return executor;
+    }
 
-	@Bean(name = Constants.JOB_TASK_EXECUTOR)
-	public TaskExecutor asyncExecutor() {
-		ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-		executor.setCorePoolSize(10);
-		executor.setMaxPoolSize(10);
-		executor.setQueueCapacity(30);
-		return executor;
-	}
+    @Bean(name = Constants.JOB_TASK_EXECUTOR)
+    public TaskExecutor asyncExecutor() {
+        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+        executor.setCorePoolSize(10);
+        executor.setMaxPoolSize(10);
+        executor.setQueueCapacity(30);
+        return executor;
+    }
 
 }

@@ -7,8 +7,8 @@ import org.springframework.http.ResponseEntity;
 
 public interface ExceptionResponse<T extends Throwable> {
 
-	ResponseEntity<Object> handle(T ex, HttpServletRequest request, HttpServletResponse response);
-	
-	boolean isSupport(T ex, HttpServletRequest request, HttpServletResponse response);
+    ResponseEntity<Object> handle(T ex, HttpServletRequest request, HttpServletResponse response);
+
+    boolean isSupport(T ex, HttpServletRequest request, HttpServletResponse response);
 
 }

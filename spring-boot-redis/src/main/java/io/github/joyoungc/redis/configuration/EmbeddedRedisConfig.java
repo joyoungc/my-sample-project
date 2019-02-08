@@ -14,25 +14,25 @@ import redis.embedded.RedisServer;
 @Slf4j
 @Component
 public class EmbeddedRedisConfig {
-	
-	@Value("${spring.redis.session.port}")
-	private int redisPort;
 
-	private RedisServer redisServer;
-	
-	@PostConstruct
-	public void startRedis() throws IOException {
-		redisServer = RedisServer.builder().port(redisPort).setting("maxmemory 32M").build();
-		redisServer.start();
-		log.info("## Embedded Redis Start!!!");
-	}
+    @Value("${spring.redis.session.port}")
+    private int redisPort;
 
-	@PreDestroy
-	public void stopRedis() {
-		if (redisServer != null) {
-			redisServer.stop();
-		}
-		log.info("## Embedded Redis Stop...");
-	}
+    private RedisServer redisServer;
+
+    @PostConstruct
+    public void startRedis() throws IOException {
+        redisServer = RedisServer.builder().port(redisPort).setting("maxmemory 32M").build();
+        redisServer.start();
+        log.info("## Embedded Redis Start!!!");
+    }
+
+    @PreDestroy
+    public void stopRedis() {
+        if (redisServer != null) {
+            redisServer.stop();
+        }
+        log.info("## Embedded Redis Stop...");
+    }
 
 }

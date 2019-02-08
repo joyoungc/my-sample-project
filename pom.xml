@@ -1,41 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>io.github.joyoungc</groupId>
-	<artifactId>spring-boot-multi-module-parent</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>pom</packaging>
-	<name>spring-boot-multi-module</name>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>io.github.joyoungc</groupId>
+    <artifactId>spring-boot-multi-module-parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>spring-boot-multi-module</name>
 
-	<modules>
-		<module>spring-boot-batch</module>
-		<module>spring-boot-cloud</module>
-		<module>spring-boot-common</module>
-		<module>spring-boot-environment</module>
-		<module>spring-boot-jpa</module>
-		<module>spring-boot-mybatis</module>
-		<module>spring-boot-netty</module>
-		<module>spring-boot-redis</module>
-		<module>spring-boot-security</module>
-		<module>spring-boot-swagger</module>
-		<module>spring-boot-web-mvc</module>
-	</modules>
-	
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.6.RELEASE</version>
-		<relativePath /> <!-- lookup parent from repository -->
-	</parent>
-	
-	<properties>
-		<springfox-swagger2.version>2.9.2</springfox-swagger2.version>
-		<springfox-swagger-ui.version>2.9.2</springfox-swagger-ui.version>
-		<mybatis-spring-boot-starter.version>1.3.2</mybatis-spring-boot-starter.version>
-		<modelmapper.version>1.1.0</modelmapper.version>
-	</properties>
+    <modules>
+        <module>spring-boot-batch</module>
+        <module>spring-boot-cloud</module>
+        <module>spring-boot-common</module>
+        <module>spring-boot-environment</module>
+        <module>spring-boot-jpa</module>
+        <module>spring-boot-mybatis</module>
+        <module>spring-boot-netty</module>
+        <module>spring-boot-redis</module>
+        <module>spring-boot-security</module>
+        <module>spring-boot-swagger</module>
+        <module>spring-boot-web-mvc</module>
+    </modules>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.2.RELEASE</version>
+        <relativePath /> <!-- lookup parent from repository -->
+    </parent>
+
+    <properties>
+        <springfox-swagger2.version>2.9.2</springfox-swagger2.version>
+        <springfox-swagger-ui.version>2.9.2</springfox-swagger-ui.version>
+        <mybatis-spring-boot-starter.version>1.3.2</mybatis-spring-boot-starter.version>
+        <modelmapper.version>1.1.0</modelmapper.version>
+    </properties>
 
 </project>

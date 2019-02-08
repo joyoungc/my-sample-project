@@ -33,6 +33,7 @@ public class CommonRestExceptionHandler extends ResponseEntityExceptionHandler {
 
     /**
      * RequestParam 에 값이 누락되었을시 발생
+     *
      * @param ex
      * @param headers
      * @param status
@@ -44,13 +45,15 @@ public class CommonRestExceptionHandler extends ResponseEntityExceptionHandler {
                                                                           HttpHeaders headers, HttpStatus status,
                                                                           WebRequest request) {
 
-        ErrorResponse errorResponse = new ErrorResponse(CommonError.COMMON_BAD_REQUEST.getCode(), ex.getMessage(), status);
+        ErrorResponse errorResponse = new ErrorResponse(CommonError.COMMON_BAD_REQUEST.getCode(), ex.getMessage(),
+                status);
 
         return handleExceptionInternal(ex, errorResponse, headers, status, request);
     }
 
     /**
      * Validation Annotation에 의한 유효성 검증시 예외사항 발생되었을때
+     *
      * @param ex
      * @param headers
      * @param status
@@ -75,7 +78,7 @@ public class CommonRestExceptionHandler extends ResponseEntityExceptionHandler {
 
         errorResponse.setErrors(errors);
 
-        return handleExceptionInternal(ex, errorResponse,null,status,request);
+        return handleExceptionInternal(ex, errorResponse, null, status, request);
     }
 
     @ExceptionHandler(ApplicationException.class)

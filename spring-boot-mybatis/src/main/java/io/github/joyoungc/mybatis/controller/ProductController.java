@@ -19,38 +19,38 @@ import io.github.joyoungc.mybatis.service.ProductService;
 @RestController
 @RequestMapping("/products")
 public class ProductController {
-	
-	private final ProductService productService;
-	
-	public ProductController(ProductService productService) {
-		this.productService = productService;
-	}
 
-	@RequestMapping(value = "/{productId}", method = RequestMethod.GET)
-	public Product getProduct(@PathVariable String productId) {
-		return productService.getProduct(productId);
-	}
+    private final ProductService productService;
 
-	@RequestMapping(method = RequestMethod.GET)
-	public List<Product> selectProducts() {
-		return productService.selectProducts();
-	}
+    public ProductController(ProductService productService) {
+        this.productService = productService;
+    }
 
-	@RequestMapping(method = RequestMethod.POST)
-	@ResponseStatus(value = HttpStatus.CREATED)
-	public void createProduct(@RequestBody @Valid Product product) {
-		productService.createProduct(product);
-	}
+    @RequestMapping(value = "/{productId}", method = RequestMethod.GET)
+    public Product getProduct(@PathVariable String productId) {
+        return productService.getProduct(productId);
+    }
 
-	@RequestMapping(value = "/{productId}", method = RequestMethod.PUT)
-	public void updateProduct(@PathVariable String productId, @RequestBody @Validated Product product) {
-		product.setProductId(productId);
-		productService.updateProduct(product);
-	}
+    @RequestMapping(method = RequestMethod.GET)
+    public List<Product> selectProducts() {
+        return productService.selectProducts();
+    }
 
-	@RequestMapping(value = "/{productId}", method = RequestMethod.DELETE)
-	public void deleteProduct(@PathVariable String productId) {
-		productService.deleteProduct(productId);
-	}
+    @RequestMapping(method = RequestMethod.POST)
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public void createProduct(@RequestBody @Valid Product product) {
+        productService.createProduct(product);
+    }
+
+    @RequestMapping(value = "/{productId}", method = RequestMethod.PUT)
+    public void updateProduct(@PathVariable String productId, @RequestBody @Validated Product product) {
+        product.setProductId(productId);
+        productService.updateProduct(product);
+    }
+
+    @RequestMapping(value = "/{productId}", method = RequestMethod.DELETE)
+    public void deleteProduct(@PathVariable String productId) {
+        productService.deleteProduct(productId);
+    }
 
 }

@@ -12,46 +12,47 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-	
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		
-		http
-			.csrf().ignoringAntMatchers("/h2console/**")
-				.and()
-			.headers().frameOptions().sameOrigin()
-				.and()
-			.authorizeRequests()
-				.antMatchers("/webjars/**","/h2console/**","/", "/home").permitAll()
-				.anyRequest().authenticated()
-				.and()
-			.formLogin()
-				.loginPage("/login")
-				.permitAll()
-				.and()
-			.logout()
-				.permitAll();
-	}
-	
-    
-	// 한명의 USER 등록
-	// TODO - DB로 연동예정
-	@Autowired
-    protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-    	// auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
-		auth.inMemoryAuthentication()
-			.withUser("joyoungc").password("password").roles("USER");
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+
+        http
+                .csrf().ignoringAntMatchers("/h2console/**")
+                .and()
+                .headers().frameOptions().sameOrigin()
+                .and()
+                .authorizeRequests()
+                .antMatchers("/webjars/**", "/h2console/**", "/", "/home").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .permitAll()
+                .and()
+                .logout()
+                .permitAll();
     }
-	
-	/**
-	 * Password 암호화 Encoder
-	 * @return
-	 */
-	@Bean
-	public BCryptPasswordEncoder passwordEncoder() {
-		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-		return bCryptPasswordEncoder;
-	}
-    
+
+
+    // 한명의 USER 등록
+    // TODO - DB로 연동예정
+    @Autowired
+    protected void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        // auth.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
+        auth.inMemoryAuthentication()
+                .withUser("joyoungc").password("password").roles("USER");
+    }
+
+    /**
+     * Password 암호화 Encoder
+     *
+     * @return
+     */
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        return bCryptPasswordEncoder;
+    }
+
 
 }

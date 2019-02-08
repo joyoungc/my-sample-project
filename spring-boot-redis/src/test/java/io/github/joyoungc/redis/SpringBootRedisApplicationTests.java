@@ -24,44 +24,45 @@ import lombok.extern.slf4j.Slf4j;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class SpringBootRedisApplicationTests {
-	
-	@Autowired
-	private TestRestTemplate restTemplate;
 
-	@Test
-	public void testRedisSession() {
-		
-		ResponseEntity<String> response = this.restTemplate.exchange("/session", HttpMethod.GET, null, String.class);
-		
-		log.info("## first response : {}", response.getBody());
-		
-		assertThat(response.getBody()).isNotBlank();
-		
-		HttpHeaders responseHeaders = response.getHeaders();
-		List<String> cookies = responseHeaders.get(HttpHeaders.SET_COOKIE);
-		
-		log.info("## cookies : {}", cookies);
-		
-		if (!CollectionUtils.isEmpty(cookies)) {
-			
-			String sessionStr = Stream
-					.of(cookies.stream().filter(x -> x.contains("SESSION=")).findFirst().map(s -> s.split(";")).get())
-					.filter(x -> x.contains("SESSION=")).findFirst().orElse("");
-			
-			log.info("## {}", sessionStr);
-			
-			HttpHeaders headers = new HttpHeaders();
-			headers.add(HttpHeaders.COOKIE, sessionStr);
-			
-			HttpEntity<?> requestEntity2 = new HttpEntity<>(headers);
-			ResponseEntity<String> response2 = this.restTemplate.exchange("/session", HttpMethod.GET, requestEntity2, String.class);
-			
-			log.info("## second response : {}", response2.getBody());
-			
-			assertThat(response2.getBody()).isNotBlank();
-		}
-		
-		
-	}
-	
+    @Autowired
+    private TestRestTemplate restTemplate;
+
+    @Test
+    public void testRedisSession() {
+
+        ResponseEntity<String> response = this.restTemplate.exchange("/session", HttpMethod.GET, null, String.class);
+
+        log.info("## first response : {}", response.getBody());
+
+        assertThat(response.getBody()).isNotBlank();
+
+        HttpHeaders responseHeaders = response.getHeaders();
+        List<String> cookies = responseHeaders.get(HttpHeaders.SET_COOKIE);
+
+        log.info("## cookies : {}", cookies);
+
+        if (!CollectionUtils.isEmpty(cookies)) {
+
+            String sessionStr = Stream
+                    .of(cookies.stream().filter(x -> x.contains("SESSION=")).findFirst().map(s -> s.split(";")).get())
+                    .filter(x -> x.contains("SESSION=")).findFirst().orElse("");
+
+            log.info("## {}", sessionStr);
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.add(HttpHeaders.COOKIE, sessionStr);
+
+            HttpEntity<?> requestEntity2 = new HttpEntity<>(headers);
+            ResponseEntity<String> response2 = this.restTemplate.exchange("/session", HttpMethod.GET, requestEntity2,
+                    String.class);
+
+            log.info("## second response : {}", response2.getBody());
+
+            assertThat(response2.getBody()).isNotBlank();
+        }
+
+
+    }
+
 }

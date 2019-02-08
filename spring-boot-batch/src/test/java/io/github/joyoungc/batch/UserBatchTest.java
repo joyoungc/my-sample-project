@@ -16,7 +16,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
- *
  * @author joyoungc
  * @date 2018.06.19
  */
@@ -24,21 +23,21 @@ import org.springframework.test.context.junit4.SpringRunner;
 //@SpringBootTest
 public class UserBatchTest {
 
-	@Autowired
-	private JobLauncher jobLauncher;
+    @Autowired
+    private JobLauncher jobLauncher;
 
-	@Autowired
-	private Job userJob;
+    @Autowired
+    private Job userJob;
 
-	@Ignore
-	public void TestStartBatch() throws Exception {
+    @Ignore
+    public void TestStartBatch() throws Exception {
 
-		JobParameters params = new JobParametersBuilder().addString("targetFile", "test-data01.dat")
-				.toJobParameters();
-		JobExecution job = jobLauncher.run(userJob, params);
+        JobParameters params = new JobParametersBuilder().addString("targetFile", "test-data01.dat")
+                .toJobParameters();
+        JobExecution job = jobLauncher.run(userJob, params);
 
-		assertThat(job.getExitStatus()).isEqualTo(ExitStatus.COMPLETED);
-		
-	}
+        assertThat(job.getExitStatus()).isEqualTo(ExitStatus.COMPLETED);
+
+    }
 
 }

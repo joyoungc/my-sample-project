@@ -9,28 +9,28 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class SampleAopConfig {
-	
-	@Pointcut("execution(* io.github.joyoungc.environment.util.SampleAopUtils.*(..))")
-	public void samplePointcut() {	
-		
-	}
-	
-	@Pointcut("@within(org.springframework.stereotype.Controller) "
-			+ "|| @within(org.springframework.stereotype.Repository)"
-			+ "|| @within(org.springframework.stereotype.Service)")
-	public void springBeanPointcut() {
-		
-	}
-	
-	@AfterReturning("springBeanPointcut()")
-	public void testSpringBeanlogging() {
-		System.out.println("########## AOP 로깅 : springBeanPointcut() ##########");
-	}
-	
-	@AfterThrowing("samplePointcut()")
-	public void testSamplePointcutlogging() {
-		System.out.println("########## AOP 로깅 : samplePointcut() ##########");
-	}
-	
+
+    @Pointcut("execution(* io.github.joyoungc.environment.util.SampleAopUtils.*(..))")
+    public void samplePointcut() {
+
+    }
+
+    @Pointcut("@within(org.springframework.stereotype.Controller) "
+            + "|| @within(org.springframework.stereotype.Repository)"
+            + "|| @within(org.springframework.stereotype.Service)")
+    public void springBeanPointcut() {
+
+    }
+
+    @AfterReturning("springBeanPointcut()")
+    public void testSpringBeanlogging() {
+        System.out.println("########## AOP 로깅 : springBeanPointcut() ##########");
+    }
+
+    @AfterThrowing("samplePointcut()")
+    public void testSamplePointcutlogging() {
+        System.out.println("########## AOP 로깅 : samplePointcut() ##########");
+    }
+
 
 }

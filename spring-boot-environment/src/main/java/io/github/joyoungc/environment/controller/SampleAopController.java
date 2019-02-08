@@ -15,20 +15,20 @@ import io.github.joyoungc.environment.service.SampleAopService;
 @RequestMapping("/aop")
 public class SampleAopController {
 
-	private final SampleAopService aopService;
-	
-	@Autowired
-	MessageSource messageSource;
-	
-	public SampleAopController(SampleAopService aopService) {
-		this.aopService = aopService;
-	}
+    private final SampleAopService aopService;
 
-	@GetMapping("/hello")
-	public String hello(String input, HttpSession session) {
-		String message = messageSource.getMessage("test", null, LocaleContextHolder.getLocale());
-		System.out.println(message);
-		return aopService.hello(input, session);
-	}
+    @Autowired
+    MessageSource messageSource;
+
+    public SampleAopController(SampleAopService aopService) {
+        this.aopService = aopService;
+    }
+
+    @GetMapping("/hello")
+    public String hello(String input, HttpSession session) {
+        String message = messageSource.getMessage("test", null, LocaleContextHolder.getLocale());
+        System.out.println(message);
+        return aopService.hello(input, session);
+    }
 
 }

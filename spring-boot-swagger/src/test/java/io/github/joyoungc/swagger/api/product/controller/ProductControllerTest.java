@@ -46,11 +46,11 @@ public class ProductControllerTest {
     }
     */
 
-    FieldDescriptor[] product = new FieldDescriptor[] {
+    FieldDescriptor[] product = new FieldDescriptor[]{
             fieldWithPath("productId").description("상품아이디"),
             fieldWithPath("productName").description("상품명"),
-            fieldWithPath("description").description("상품설명"),
-            fieldWithPath("price").description("상품 가격").type(JsonFieldType.NUMBER) };
+            //fieldWithPath("description").description("상품설명"),
+            fieldWithPath("price").description("상품 가격").type(JsonFieldType.NUMBER)};
 
 
     @Test
@@ -93,7 +93,7 @@ public class ProductControllerTest {
                         fieldWithPath("productName").description("상품명").type(JsonFieldType.STRING),
                         fieldWithPath("description").description("상품설명(optional)").type(JsonFieldType.STRING).optional(),
                         fieldWithPath("price").description("상품 가격").type(JsonFieldType.NUMBER))
-                ));
+        ));
 
     }
 

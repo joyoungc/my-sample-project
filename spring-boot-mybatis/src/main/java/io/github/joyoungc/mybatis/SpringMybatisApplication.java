@@ -10,8 +10,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @ComponentScan(basePackages = {"io.github.joyoungc"})
 public class SpringMybatisApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringMybatisApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(SpringMybatisApplication.class, args);
+    }
 
 }

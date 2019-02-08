@@ -4,10 +4,6 @@ spring:
   jackson:
     default-property-inclusion: non_null
 
-# logging:
-#   level:
-#     org.springframework.boot.autoconfigure.logging: INFO
-
 application:
   exception:
     default-error-code: COM0000

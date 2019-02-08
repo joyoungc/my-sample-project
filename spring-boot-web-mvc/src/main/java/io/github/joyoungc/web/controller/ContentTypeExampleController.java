@@ -16,28 +16,28 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/content")
 public class ContentTypeExampleController {
 
-	@PostMapping("/form/model")
-	public ContentTypeExample postFormModel(ContentTypeExample ex) {
-		log.info("## postFormModel ex : {}", ex);
-		return ex;
-	}
-	
-	@PostMapping("/form/map")
-	public Map<String, Object> postFormMap(@RequestParam Map<String, Object> ex) {
-		log.info("## postFormMap ex : {}", ex);
-		return ex;
-	}
-	
-	@PostMapping("/json/model")
-	public ContentTypeExample postJsonModel(@RequestBody ContentTypeExample ex) {
-		log.info("## postJsonModel ex : {}", ex);
-		return ex;
-	}
+    @PostMapping("/form/model")
+    public ContentTypeExample postFormModel(ContentTypeExample ex) {
+        log.info("## postFormModel ex : {}", ex);
+        return ex;
+    }
 
-	@PostMapping("/json/map")
-	public Map<String, Object> postJsonMap(@RequestBody Map<String, Object> ex) {
-		log.info("## postJsonMap ex : {}", ex);
-		return ex;
-	}
-	
+    @PostMapping("/form/map")
+    public Map<String, Object> postFormMap(@RequestParam Map<String, Object> ex) {
+        log.info("## postFormMap ex : {}", ex);
+        return ex;
+    }
+
+    @PostMapping("/json/model")
+    public ContentTypeExample postJsonModel(@RequestBody ContentTypeExample ex) {
+        log.info("## postJsonModel ex : {}", ex);
+        return ex;
+    }
+
+    @PostMapping("/json/map")
+    public Map<String, Object> postJsonMap(@RequestBody Map<String, Object> ex) {
+        log.info("## postJsonMap ex : {}", ex);
+        return ex;
+    }
+
 }

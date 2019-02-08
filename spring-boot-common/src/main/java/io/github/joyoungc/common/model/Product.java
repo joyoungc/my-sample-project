@@ -6,14 +6,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Builder 
-@NoArgsConstructor 
+@Builder
+@NoArgsConstructor
 @AllArgsConstructor
-@Getter @Setter
+@Getter
+@Setter
 public class Product {
-	
-	private String productId;
-	private String productName;
-	private Integer price;
-	private String description;
+
+    private String productId;
+    private String productName;
+    private Integer price;
+    private String description;
 }

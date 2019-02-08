@@ -2,80 +2,80 @@
 <html lang="ko">
 
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>area > radar | Chart.js sample</title>
-	<script src="js/chartjs.2.7.2.js"></script>
-	<script src="js/chartjs-plugin-datalabels.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>area > radar | Chart.js sample</title>
+    <script src="js/chartjs.2.7.2.js"></script>
+    <script src="js/chartjs-plugin-datalabels.js"></script>
 </head>
 
 <body>
-	<div class="content">
-		<div class="wrapper">
-			<canvas id="chart-0"></canvas>
-		</div>
-	</div>
+<div class="content">
+    <div class="wrapper">
+        <canvas id="chart-0"></canvas>
+    </div>
+</div>
 
-	<script>
+<script>
 
-		var marksData = {
-			labels: ['이해', '실천', '집중', '도약'],
-			datasets: [{
-				label: "학생 A",
-				backgroundColor: "transparent",
-				borderColor: "rgba(0,0,200,0.6)",
-				fill: false,
-				/* 포인트 설정값
-				radius: 6,
-				pointBorderWidth: 0,
-				pointRadius: 6,
-				pointBackgroundColor: "cornflowerblue",
-				pointBorderColor: "rgba(0,0,200,0.6)", */
-				pointHoverRadius: 5,
-				data: [68, 76, 49, 59],
-				/* Data 라벨 설정 부분 */
-				datalabels: {
-					align: 'end',
-					anchor: 'start',
-					display: true,
-					borderRadius: 4,
-					color: 'black',
-					/* color: '#001f3f', */
-					font: {
-						size: 15,
-						weight: 'bold'
-					}
-				}
-			}]
-		};
+    var marksData = {
+        labels: ['이해', '실천', '집중', '도약'],
+        datasets: [{
+            label: "학생 A",
+            backgroundColor: "transparent",
+            borderColor: "rgba(0,0,200,0.6)",
+            fill: false,
+            /* 포인트 설정값
+            radius: 6,
+            pointBorderWidth: 0,
+            pointRadius: 6,
+            pointBackgroundColor: "cornflowerblue",
+            pointBorderColor: "rgba(0,0,200,0.6)", */
+            pointHoverRadius: 5,
+            data: [68, 76, 49, 59],
+            /* Data 라벨 설정 부분 */
+            datalabels: {
+                align: 'end',
+                anchor: 'start',
+                display: true,
+                borderRadius: 4,
+                color: 'black',
+                /* color: '#001f3f', */
+                font: {
+                    size: 15,
+                    weight: 'bold'
+                }
+            }
+        }]
+    };
 
-		var chartOptions = {
-			showAllTooltips: true,
-			scale: {
-				ticks: {
-					beginAtZero: true,
-					min: 0,
-					max: 100,
-					stepSize: 20,
-					display: false
-				},
-				pointLabels: {
-					fontSize: 15
-				}
-			},
-			legend: {
-				position: 'right'
-			}
-		};
+    var chartOptions = {
+        showAllTooltips: true,
+        scale: {
+            ticks: {
+                beginAtZero: true,
+                min: 0,
+                max: 100,
+                stepSize: 20,
+                display: false
+            },
+            pointLabels: {
+                fontSize: 15
+            }
+        },
+        legend: {
+            position: 'right'
+        }
+    };
 
-		var radarChart = new Chart('chart-0', {
-			type: 'radar',
-			data: marksData,
-			options: chartOptions
-		});
+    var radarChart = new Chart('chart-0', {
+        type: 'radar',
+        data: marksData,
+        options: chartOptions
+    });
 
-	</script>
+</script>
 </body>
 
 </html>

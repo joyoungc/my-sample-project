@@ -4,44 +4,44 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="io.github.joyoungc.mybatis.mapper.ProductMapper">
 
-	<select id="getProduct" resultType="Product">
-		SELECT * FROM product
-		 WHERE productId = #{productId}
-	</select>
-	
-	<select id="selectProducts" resultType="Product">
-		SELECT * FROM product
-	</select>
-	
-	<update id="updateProduct" parameterType="Product">
-		UPDATE product
-		   SET 
-			productName = #{productName},
-			price = #{price},
-			description = #{description}
-		 WHERE productId = #{productId}			
-	</update>
-	
-	<insert id="createProduct" parameterType="Product">
-		INSERT INTO product
-			(
-				productId,
-				productName,
-				price,
-				description
-			)
-		VALUES
-			(
-				#{productId},
-				#{productName},
-				#{price},
-				#{description}
-			)
-	</insert>
-	
-	<delete id="deleteProduct" parameterType="String">
-		DELETE FROM product
-		 WHERE productId = #{productId}	
-	</delete>
-	
+    <select id="getProduct" resultType="Product">
+        SELECT * FROM product
+        WHERE productId = #{productId}
+    </select>
+
+    <select id="selectProducts" resultType="Product">
+        SELECT * FROM product
+    </select>
+
+    <update id="updateProduct" parameterType="Product">
+        UPDATE product
+        SET
+        productName = #{productName},
+        price = #{price},
+        description = #{description}
+        WHERE productId = #{productId}
+    </update>
+
+    <insert id="createProduct" parameterType="Product">
+        INSERT INTO product
+        (
+        productId,
+        productName,
+        price,
+        description
+        )
+        VALUES
+        (
+        #{productId},
+        #{productName},
+        #{price},
+        #{description}
+        )
+    </insert>
+
+    <delete id="deleteProduct" parameterType="String">
+        DELETE FROM product
+        WHERE productId = #{productId}
+    </delete>
+
 </mapper>

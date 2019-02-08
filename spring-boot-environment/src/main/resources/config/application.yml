@@ -9,16 +9,15 @@ my-random:
   uuid: ${random.uuid}
   number-less-than-ten: ${random.int(10)}
   number-in-range: ${random.int[1024,65536]}
-  
+
 list:
-  - name: my name
-    desc: my description  
-    
-#spring:
-#  messages:
-#    basename: messages/message
-    
-logging:
-  level:
-    org.springframework.boot.autoconfigure.logging: DEBUG
-    
+- name: my name
+  desc: my description
+
+  #spring:
+  #  messages:
+  #    basename: messages/message
+
+#logging:
+#  level:
+#    org.springframework.boot.autoconfigure.logging: error

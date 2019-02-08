@@ -15,25 +15,25 @@ import io.github.joyoungc.common.handler.RestClientLoggingInterceptor;
 
 @Configuration
 public class CommonConfig {
-	
-	@Bean
-	public ModelMapper modelMapper() {
-		return new ModelMapper();
-	}
-	
-	@Bean
-	public RestTemplate restTemplate() {
-		RestTemplate template = new RestTemplate(
-				new BufferingClientHttpRequestFactory(new SimpleClientHttpRequestFactory()));
-		template.setInterceptors(Collections.singletonList(new RestClientLoggingInterceptor()));
-		return template;
-	}
 
-	@Bean
-	public MessageSource errorMessageSource() {
-		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-		messageSource.setBasename("classpath:/messages/error/error");
-		return messageSource;
-	}
+    @Bean
+    public ModelMapper modelMapper() {
+        return new ModelMapper();
+    }
+
+    @Bean
+    public RestTemplate restTemplate() {
+        RestTemplate template = new RestTemplate(
+                new BufferingClientHttpRequestFactory(new SimpleClientHttpRequestFactory()));
+        template.setInterceptors(Collections.singletonList(new RestClientLoggingInterceptor()));
+        return template;
+    }
+
+    @Bean
+    public MessageSource errorMessageSource() {
+        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+        messageSource.setBasename("classpath:/messages/error/error");
+        return messageSource;
+    }
 
 }

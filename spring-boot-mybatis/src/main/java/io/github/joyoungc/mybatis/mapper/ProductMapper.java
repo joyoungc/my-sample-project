@@ -10,13 +10,13 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProductMapper {
 
-	Product getProduct(String productId);
+    Product getProduct(String productId);
 
-	List<Product> selectProducts();
+    List<Product> selectProducts();
 
-	Integer createProduct(Product product);
+    Integer createProduct(Product product);
 
-	Integer updateProduct(Product product);
+    Integer updateProduct(Product product);
 
-	Integer deleteProduct(String productId);
+    Integer deleteProduct(String productId);
 }

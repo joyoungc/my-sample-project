@@ -1,9 +1,9 @@
 server:
   port: 9090
-  
+
 spring:
   application.name: spring-boot-cloud
-  
+
 logging:
   level:
     io.github.joyoungc: debug 

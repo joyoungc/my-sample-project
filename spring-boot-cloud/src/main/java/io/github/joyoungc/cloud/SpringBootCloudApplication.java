@@ -7,9 +7,9 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @ComponentScan(basePackages = {"io.github.joyoungc"})
 public class SpringBootCloudApplication {
-	
-	public static void main(String[] args) {
-		SpringApplication.run(SpringBootCloudApplication.class, args);
-	}
+
+    public static void main(String[] args) {
+        SpringApplication.run(SpringBootCloudApplication.class, args);
+    }
 
 }

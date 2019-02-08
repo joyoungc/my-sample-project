@@ -19,7 +19,6 @@ import io.github.joyoungc.common.model.User;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- *
  * @author joyoungc
  * @date 2018.06.25
  */
@@ -28,34 +27,34 @@ import lombok.extern.slf4j.Slf4j;
 @ConditionalOnProperty(name = "rest.trans-type", havingValue = Constants.SYNC)
 public class SyncRestClient implements RestClient<User, User> {
 
-	private final RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
 
-	public SyncRestClient(WebClient.Builder builder, BatchProperties prop) {
-		SimpleClientHttpRequestFactory simpleFactory = new SimpleClientHttpRequestFactory();
-		simpleFactory.setReadTimeout(prop.getRest().getReadTimeout());
-		simpleFactory.setConnectTimeout(prop.getRest().getConnectTimeout());
-		RestTemplate rest = new RestTemplate(
-				new BufferingClientHttpRequestFactory(new SimpleClientHttpRequestFactory()));
-		rest.setInterceptors(Collections.singletonList(new RestClientLoggingInterceptor()));
-		rest.setUriTemplateHandler(new DefaultUriBuilderFactory(prop.getBatch().getTargetUrl()));
-		this.restTemplate = rest;
-	}
+    public SyncRestClient(WebClient.Builder builder, BatchProperties prop) {
+        SimpleClientHttpRequestFactory simpleFactory = new SimpleClientHttpRequestFactory();
+        simpleFactory.setReadTimeout(prop.getRest().getReadTimeout());
+        simpleFactory.setConnectTimeout(prop.getRest().getConnectTimeout());
+        RestTemplate rest = new RestTemplate(
+                new BufferingClientHttpRequestFactory(new SimpleClientHttpRequestFactory()));
+        rest.setInterceptors(Collections.singletonList(new RestClientLoggingInterceptor()));
+        rest.setUriTemplateHandler(new DefaultUriBuilderFactory(prop.getBatch().getTargetUrl()));
+        this.restTemplate = rest;
+    }
 
-	@Override
-	public User connection(User item, String url) {
+    @Override
+    public User connection(User item, String url) {
 
-		User user = null;
+        User user = null;
 
-		try {
-			ResponseEntity<User> response = restTemplate.postForEntity(url, item, User.class);
-			user = response.getBody();
-		} catch (ResourceAccessException e) {
-			log.error("## ResourceAccessException : {}", e.getMessage());
-		} catch (Exception e) {
-			log.error("## Exception : {}", e.getMessage());
-		}
+        try {
+            ResponseEntity<User> response = restTemplate.postForEntity(url, item, User.class);
+            user = response.getBody();
+        } catch (ResourceAccessException e) {
+            log.error("## ResourceAccessException : {}", e.getMessage());
+        } catch (Exception e) {
+            log.error("## Exception : {}", e.getMessage());
+        }
 
-		return user;
-	}
+        return user;
+    }
 
 }

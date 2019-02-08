@@ -16,14 +16,14 @@ import lombok.extern.slf4j.Slf4j;
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
 public class SpringBootCloudApplicationTests {
-	
-	@Autowired
-	TestRestTemplate restTemplate;
 
-	@Test
-	public void testSleuthRest() throws Exception {
-		String result = restTemplate.getForObject("/sleuth/hello", String.class);
-		log.debug("## result : {} ", result);
-	}
+    @Autowired
+    TestRestTemplate restTemplate;
+
+    @Test
+    public void testSleuthRest() throws Exception {
+        String result = restTemplate.getForObject("/sleuth/hello", String.class);
+        log.debug("## result : {} ", result);
+    }
 
 }

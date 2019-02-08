@@ -30,76 +30,77 @@ import io.github.joyoungc.batch.config.Constants;
 import io.github.joyoungc.common.model.User;
 
 /**
- *
  * @author joyoungc
  * @date 2018.06.19
  */
 @Configuration
 public class UserBatchConfig {
 
-	@Autowired
-	private BatchProperties prop;
+    @Autowired
+    private BatchProperties prop;
 
-	@Autowired
-	private UserStepListener stepListener;
+    @Autowired
+    private UserStepListener stepListener;
 
-	@Autowired
-	private UserChunkListener chunkListener;
+    @Autowired
+    private UserChunkListener chunkListener;
 
-	@Bean(name = "userJobLauncher")
-	public JobLauncher jobLauncher(@Qualifier(Constants.JOB_TASK_EXECUTOR) TaskExecutor executor, JobRepository jobRepository) {
-		SimpleJobLauncher jobLauncher = new SimpleJobLauncher();
-		jobLauncher.setTaskExecutor(executor);
-		jobLauncher.setJobRepository(jobRepository);
-		return jobLauncher;
-	}
+    @Bean(name = "userJobLauncher")
+    public JobLauncher jobLauncher(@Qualifier(Constants.JOB_TASK_EXECUTOR) TaskExecutor executor,
+                                   JobRepository jobRepository) {
+        SimpleJobLauncher jobLauncher = new SimpleJobLauncher();
+        jobLauncher.setTaskExecutor(executor);
+        jobLauncher.setJobRepository(jobRepository);
+        return jobLauncher;
+    }
 
-	@Bean
-	public Job userJob(JobBuilderFactory jobBuilderFactory, Step userStep) {
-		return jobBuilderFactory.get("userJob").incrementer(new RunIdIncrementer()).flow(userStep).end()
-				.build();
-	}
+    @Bean
+    public Job userJob(JobBuilderFactory jobBuilderFactory, Step userStep) {
+        return jobBuilderFactory.get("userJob").incrementer(new RunIdIncrementer()).flow(userStep).end()
+                .build();
+    }
 
-	@Bean
-	public Step userStep(@Qualifier(Constants.STEP_TASK_EXECUTOR) TaskExecutor executor, StepBuilderFactory stepBuilderFactory,
-			FlatFileItemReader<User> reader, UserItemProcessor processor, UserItemWriter writer) {
-		return stepBuilderFactory.get("userStep").<User, User>chunk(prop.getBatch().getChunkSize()).reader(reader)
-				.processor(processor).writer(writer).listener(stepListener).listener(chunkListener)
-				.taskExecutor(executor).build();
-	}
+    @Bean
+    public Step userStep(@Qualifier(Constants.STEP_TASK_EXECUTOR) TaskExecutor executor,
+                         StepBuilderFactory stepBuilderFactory,
+                         FlatFileItemReader<User> reader, UserItemProcessor processor, UserItemWriter writer) {
+        return stepBuilderFactory.get("userStep").<User, User>chunk(prop.getBatch().getChunkSize()).reader(reader)
+                .processor(processor).writer(writer).listener(stepListener).listener(chunkListener)
+                .taskExecutor(executor).build();
+    }
 
-	@Bean
-	@StepScope
-	public FlatFileItemReader<User> reader(@Value("#{jobParameters['targetFile']}") String targetFile) {
-		FlatFileItemReader<User> reader = new FlatFileItemReader<>();
-		reader.setResource(new ClassPathResource("data/" + targetFile));
-		reader.setLineMapper(new DefaultLineMapper<User>() {
-			{
-				setLineTokenizer(new DelimitedLineTokenizer("|") {
-					{
-						setNames(new String[] { "userId" });
-					}
-				});
-				setFieldSetMapper(new BeanWrapperFieldSetMapper<User>() {
-					{
-						setTargetType(User.class);
-					}
-				});
-			}
-		});
-		return reader;
-	}
+    @Bean
+    @StepScope
+    public FlatFileItemReader<User> reader(@Value("#{jobParameters['targetFile']}") String targetFile) {
+        FlatFileItemReader<User> reader = new FlatFileItemReader<>();
+        reader.setResource(new ClassPathResource("data/" + targetFile));
+        reader.setLineMapper(new DefaultLineMapper<User>() {
+            {
+                setLineTokenizer(new DelimitedLineTokenizer("|") {
+                    {
+                        setNames(new String[]{"userId"});
+                    }
+                });
+                setFieldSetMapper(new BeanWrapperFieldSetMapper<User>() {
+                    {
+                        setTargetType(User.class);
+                    }
+                });
+            }
+        });
+        return reader;
+    }
 
-	@Bean
-	@StepScope
-	public UserItemProcessor processor() {
-		return new UserItemProcessor();
-	}
+    @Bean
+    @StepScope
+    public UserItemProcessor processor() {
+        return new UserItemProcessor();
+    }
 
-	@Bean
-	@StepScope
-	public UserItemWriter writer() {
-		return new UserItemWriter();
-	}
+    @Bean
+    @StepScope
+    public UserItemWriter writer() {
+        return new UserItemWriter();
+    }
 
 }

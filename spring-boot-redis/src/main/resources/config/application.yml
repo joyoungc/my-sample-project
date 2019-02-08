@@ -9,10 +9,10 @@ spring:
       port: 6379
       database: 0
     # url:      
-#//    host: localhost # Redis server host.
-#//    port: 6379 # Redis server port.
-#    password: password # Login password of the redis server.
-#//    database: 3 # Database index used by the connection factory.
+  #//    host: localhost # Redis server host.
+  #//    port: 6379 # Redis server port.
+  #    password: password # Login password of the redis server.
+  #//    database: 3 # Database index used by the connection factory.
   session:
     store-type: redis
 

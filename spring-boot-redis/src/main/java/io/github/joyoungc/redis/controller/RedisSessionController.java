@@ -10,17 +10,17 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RestController
 public class RedisSessionController {
-	
-	@GetMapping("/session")
-	public String getHello(HttpSession session) {
-		if(session.isNew()) {
-			log.info("## Session is New!!");
-			session.setAttribute("test", "테스트");
-			return "Session is New!!";
-		} else {
-			log.info("## Session found~~~");
-			return "Session found";
-		}
-	}
+
+    @GetMapping("/session")
+    public String getHello(HttpSession session) {
+        if (session.isNew()) {
+            log.info("## Session is New!!");
+            session.setAttribute("test", "테스트");
+            return "Session is New!!";
+        } else {
+            log.info("## Session found~~~");
+            return "Session found";
+        }
+    }
 
 }

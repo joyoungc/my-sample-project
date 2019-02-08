@@ -7,11 +7,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class SwaggerWebMvcConfig implements WebMvcConfigurer {
 
-	@Override
-	public void addViewControllers(ViewControllerRegistry registry) {
-		// TODO Auto-generated method stub
-		// WebMvcConfigurer.super.addViewControllers(registry);
-		registry.addRedirectViewController("/", "/swagger-ui.html");
-	}
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        // TODO Auto-generated method stub
+        // WebMvcConfigurer.super.addViewControllers(registry);
+        registry.addRedirectViewController("/", "/swagger-ui.html");
+    }
 
 }

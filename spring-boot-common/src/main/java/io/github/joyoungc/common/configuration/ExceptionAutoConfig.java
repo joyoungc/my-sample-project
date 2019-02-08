@@ -13,20 +13,20 @@ import io.github.joyoungc.common.handler.RequestBodyCachingFilter;
 @Configuration
 @EnableConfigurationProperties(ExceptionProperties.class)
 public class ExceptionAutoConfig {
-	
-	@Bean
-	public AbstractExceptionResponse restTemplateExceptionResponse() {
-		return new RestTemplateExceptionResponse();
-	}
-	
-	@Bean
-	public AbstractExceptionResponse defaultExceptionResponse() {
-		return new DefaultExceptionResponse();
-	}
-	
-	@Bean
-	public RequestBodyCachingFilter requestBodyCachingFilter() {
-	    return new RequestBodyCachingFilter();
-	}
+
+    @Bean
+    public AbstractExceptionResponse restTemplateExceptionResponse() {
+        return new RestTemplateExceptionResponse();
+    }
+
+    @Bean
+    public AbstractExceptionResponse defaultExceptionResponse() {
+        return new DefaultExceptionResponse();
+    }
+
+    @Bean
+    public RequestBodyCachingFilter requestBodyCachingFilter() {
+        return new RequestBodyCachingFilter();
+    }
 
 }

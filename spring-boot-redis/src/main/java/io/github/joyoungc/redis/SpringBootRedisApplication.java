@@ -14,29 +14,29 @@ import io.github.joyoungc.redis.repository.ProductRepository;
 @EnableRedisHttpSession
 public class SpringBootRedisApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringBootRedisApplication.class, args);
-	}
-	
-	@Autowired
-	ProductRepository repository;
-	
-	@Bean
-	public ApplicationRunner applicationRunner() {
-		return args -> {
-			System.out.println("#### Spring is started in @SpringBootApplication ####");
-			
-			Product product = new Product();
-			product.setProductId("1");
-			product.setProductName("레디스");
-			
-			repository.save(product);
-			
-			repository.findAll().forEach(x -> {
-				System.out.println("## 상품 아이디 : " + x.getProductId());
-				System.out.println("## 상품명 :  " + x.getProductName());
-			});
-		};
-	}
-	
+    public static void main(String[] args) {
+        SpringApplication.run(SpringBootRedisApplication.class, args);
+    }
+
+    @Autowired
+    ProductRepository repository;
+
+    @Bean
+    public ApplicationRunner applicationRunner() {
+        return args -> {
+            System.out.println("#### Spring is started in @SpringBootApplication ####");
+
+            Product product = new Product();
+            product.setProductId("1");
+            product.setProductName("레디스");
+
+            repository.save(product);
+
+            repository.findAll().forEach(x -> {
+                System.out.println("## 상품 아이디 : " + x.getProductId());
+                System.out.println("## 상품명 :  " + x.getProductName());
+            });
+        };
+    }
+
 }

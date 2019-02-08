@@ -37,7 +37,8 @@ public class DefaultExceptionHandler implements InitializingBean {
         ErrorResponse errorResponse = new ErrorResponse(Error.COM0001);
         errorResponse.setMessage(messageSource.getMessage(Error.COM0001.getCode(),null,null));
 
-        ResponseEntity<ErrorResponse> responseEntity = new ResponseEntity<>(errorResponse,null, HttpStatus.INTERNAL_SERVER_ERROR);
+        ResponseEntity<ErrorResponse> responseEntity = new ResponseEntity<>(errorResponse,null, HttpStatus
+        .INTERNAL_SERVER_ERROR);
 
         return responseEntity;
 
@@ -116,7 +117,7 @@ public class DefaultExceptionHandler implements InitializingBean {
     @ExceptionHandler(Throwable.class)
     public ResponseEntity<Object> doResolveException(@RequestBody(required = false) final Object requestBodyAsString,
                                                      final HttpServletRequest request,
-													 final HttpServletResponse response, final Object handler,
+                                                     final HttpServletResponse response, final Object handler,
                                                      final Exception ex) {
         return this.createResponseEntity(request, response, ex);
     }

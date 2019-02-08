@@ -17,23 +17,23 @@ import org.springframework.test.web.servlet.MockMvc;
 @SpringBootTest
 @AutoConfigureMockMvc
 public class SampleAopTest {
-	
-	@Autowired
-	private MockMvc mockMvc;
-	
-	@Autowired
-	SampleAopUtils sampleAopUtils;
 
-	@Test
-	public void aopTest() {
-		sampleAopUtils.executeEcho("hello!!!");
-	}
-	
-	@Ignore
-	public void testSpringBeanAop() throws Exception {
-		mockMvc.perform(get("/aop/hello?input=hello"))
-		.andDo(print())
-		.andExpect(status().isOk());
-	}
+    @Autowired
+    private MockMvc mockMvc;
+
+    @Autowired
+    SampleAopUtils sampleAopUtils;
+
+    @Test
+    public void aopTest() {
+        sampleAopUtils.executeEcho("hello!!!");
+    }
+
+    @Ignore
+    public void testSpringBeanAop() throws Exception {
+        mockMvc.perform(get("/aop/hello?input=hello"))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
 
 }

@@ -23,37 +23,38 @@ import io.github.joyoungc.jpa.product.service.ProductService;
 @RequestMapping("/products")
 public class ProductController {
 
-	private final ProductService productService;
-	
-	public ProductController(ProductService productService) {
-		this.productService = productService;
-	}
+    private final ProductService productService;
 
-	@PostMapping
-	@ResponseStatus(value = HttpStatus.CREATED)
-	public ProductDTO.Response createProduct(@RequestBody @Valid ProductDTO.Create product) {
-		return productService.createProduct(product);
-	}
+    public ProductController(ProductService productService) {
+        this.productService = productService;
+    }
 
-	@GetMapping 
-	public Page<ProductDTO.Response> selectProducts(@PageableDefault(page = 1, size = 10) Pageable pageable) {
-		return productService.selectProducts(pageable);
-	}
-	
-	@GetMapping("/{productId}") 
-	public ProductDTO.Response getProduct(@PathVariable Long productId) {
-		return productService.getProduct(productId);
-	}
-	
-	@PutMapping("/{productId}")
-	public ProductDTO.Response updateProduct(@PathVariable Long productId, @RequestBody @Valid ProductDTO.Update product) {
-		return productService.updateProduct(productId, product);
-	}
-	
-	@DeleteMapping("/{productId}")
-	@ResponseStatus(value = HttpStatus.NO_CONTENT)
-	public void deleteProduct(@PathVariable Long productId) {
-		productService.deleteProduct(productId);
-	}
+    @PostMapping
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public ProductDTO.Response createProduct(@RequestBody @Valid ProductDTO.Create product) {
+        return productService.createProduct(product);
+    }
+
+    @GetMapping
+    public Page<ProductDTO.Response> selectProducts(@PageableDefault(page = 1, size = 10) Pageable pageable) {
+        return productService.selectProducts(pageable);
+    }
+
+    @GetMapping("/{productId}")
+    public ProductDTO.Response getProduct(@PathVariable Long productId) {
+        return productService.getProduct(productId);
+    }
+
+    @PutMapping("/{productId}")
+    public ProductDTO.Response updateProduct(@PathVariable Long productId,
+                                             @RequestBody @Valid ProductDTO.Update product) {
+        return productService.updateProduct(productId, product);
+    }
+
+    @DeleteMapping("/{productId}")
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void deleteProduct(@PathVariable Long productId) {
+        productService.deleteProduct(productId);
+    }
 
 }

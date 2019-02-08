@@ -21,22 +21,22 @@ import javax.validation.Valid;
 @RequestMapping("/exception")
 public class ExceptionSampleController {
 
-	@PostMapping("/post")
-	public void throwsExceptionPost(@Valid @RequestBody ContentTypeExample body) {
+    @PostMapping("/post")
+    public void throwsExceptionPost(@Valid @RequestBody ContentTypeExample body) {
 	/*	if (!StringUtils.isEmpty(body.get("title"))) {
 			throw new BaseException("Post : 일부러 낸 오류다!!!");
 		}*/
-	}
+    }
 
-	@GetMapping("/get")
-	public void throwsExceptionGet(@RequestParam Map<String, String> params) {
-		log.debug("## params : {}", params);
-		throw new ApplicationException(CommonError.COMMON_BAD_REQUEST);
-	}
+    @GetMapping("/get")
+    public void throwsExceptionGet(@RequestParam Map<String, String> params) {
+        log.debug("## params : {}", params);
+        throw new ApplicationException(CommonError.COMMON_BAD_REQUEST);
+    }
 
-	@GetMapping("/params")
-	public void throwsExceptionParams(@RequestParam("title") String title) {
-		throw new ApplicationException(CommonError.COMMON_BAD_REQUEST);
-	}
+    @GetMapping("/params")
+    public void throwsExceptionParams(@RequestParam("title") String title) {
+        throw new ApplicationException(CommonError.COMMON_BAD_REQUEST);
+    }
 
 }

@@ -20,7 +20,7 @@ batch:
   core-task-pool-size: 50
   max-task-pool-size: 100
   chunk-size: 100
-  
+
 rest:
   trans-type: async
   read-timeout: 3000

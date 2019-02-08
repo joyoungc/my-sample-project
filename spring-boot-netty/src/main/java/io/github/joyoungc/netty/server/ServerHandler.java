@@ -14,12 +14,12 @@ import lombok.extern.slf4j.Slf4j;
 @Sharable
 @Slf4j
 public class ServerHandler extends ChannelInboundHandlerAdapter {
- 
+
     /**
      * The Channels.
      */
     private final ChannelGroup channels = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
- 
+
     /**
      * Channel active.
      *
@@ -30,7 +30,7 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         channels.add(ctx.channel());
     }
- 
+
     /**
      * Channel read.
      *
@@ -41,7 +41,7 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         ByteBuf byteBuf = (ByteBuf) msg;
-        log.debug("message : {} ",byteBuf.toString(Charset.defaultCharset()));
+        log.debug("message : {} ", byteBuf.toString(Charset.defaultCharset()));
         channels.writeAndFlush(msg);
     }
 

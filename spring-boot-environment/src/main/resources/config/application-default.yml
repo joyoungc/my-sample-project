@@ -1,13 +1,13 @@
 security:
   username: admin
   roles:
-    - USER
-    - ADMIN
+  - USER
+  - ADMIN
 
 list:
-  - name: my default
-    desc: my description
-    
+- name: my default
+  desc: my description
+
 map:
-  - name: my map
-    desc: my desc
+- name: my map
+  desc: my desc

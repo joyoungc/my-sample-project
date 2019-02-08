@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan(basePackages = {"io.github.joyoungc"})
 public class SpringBootEnvApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringBootEnvApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(SpringBootEnvApplication.class, args);
+    }
 }

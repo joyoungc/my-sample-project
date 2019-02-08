@@ -4,9 +4,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class SampleAopUtils {
-	
-	public void executeEcho(String input) {
-		System.out.println(input);
-	}
+
+    public void executeEcho(String input) {
+        System.out.println(input);
+    }
 
 }

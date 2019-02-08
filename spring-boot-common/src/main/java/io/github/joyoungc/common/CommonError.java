@@ -23,16 +23,16 @@ public enum CommonError implements ErrorCode {
 
     @Override
     public String getCode() {
-        return code;
+        return this.code;
     }
 
     @Override
     public int getStatus() {
-        return this.getStatus();
+        return this.httpStatus.value();
     }
 
     public HttpStatus getHttpStatus() {
-        return httpStatus;
+        return this.httpStatus;
     }
 
 }

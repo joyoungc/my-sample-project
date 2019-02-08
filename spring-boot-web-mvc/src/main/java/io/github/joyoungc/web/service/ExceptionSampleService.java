@@ -4,9 +4,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ExceptionSampleService {
-	
-	public void throwsException()  {
-		throw new RuntimeException();
-	}
+
+    public void throwsException() {
+        throw new RuntimeException();
+    }
 
 }

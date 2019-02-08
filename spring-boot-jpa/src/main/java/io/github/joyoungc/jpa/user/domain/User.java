@@ -1,4 +1,4 @@
-package io.github.joyoungc.jpa.user.model;
+package io.github.joyoungc.jpa.user.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,19 +11,19 @@ import lombok.Data;
 @Data
 @Table(name = "user")
 public class User {
-	
-	@Id
-	private String userId;
-	
-	@Column(nullable=false)
-	private String name;
-	
-	@Column(length = 3)
-	private Integer age;
-	
-	private String email;
-	
-	private String birthday;
+
+    @Id
+    private String userId;
+
+    @Column(nullable = false)
+    private String name;
+
+    @Column(length = 3)
+    private Integer age;
+
+    private String email;
+
+    private String birthday;
 	
 	/*
 	@OneToMany
@@ -32,5 +32,5 @@ public class User {
 	@ManyToMany
 	List<Dept> depts;
 	*/
-	
+
 }
