@@ -10,6 +10,9 @@ import java.net.InetAddress;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Properties 테스트용
+ */
 @Getter
 @Setter
 @Component

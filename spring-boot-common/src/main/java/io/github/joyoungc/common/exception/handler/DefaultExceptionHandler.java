@@ -20,6 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 모든 Exception을 Handling 하는 Class
+ */
 @Slf4j
 @ControllerAdvice
 public class DefaultExceptionHandler implements InitializingBean {
