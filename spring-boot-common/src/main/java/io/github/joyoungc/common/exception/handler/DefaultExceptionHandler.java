@@ -10,6 +10,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.MessageSource;
 import org.springframework.core.annotation.AnnotationAwareOrderComparator;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -20,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 @Slf4j
-// @ControllerAdvice
+@ControllerAdvice
 public class DefaultExceptionHandler implements InitializingBean {
 
     @Autowired
@@ -111,7 +112,6 @@ public class DefaultExceptionHandler implements InitializingBean {
     @Autowired
     private ApplicationContext applicationContext;
 
-    @SuppressWarnings("rawtypes")
     private List<ExceptionResponse> exceptionResponse = new ArrayList<>();
 
     @ExceptionHandler(Throwable.class)

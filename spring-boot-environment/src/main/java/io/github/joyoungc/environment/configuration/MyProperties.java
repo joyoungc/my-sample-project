@@ -20,10 +20,8 @@ public class MyProperties {
 
     private boolean enabled;
 
-    // private final Security security = new Security();
     private Security security;
 
-    // private final List<MyPojo> list = new ArrayList<>();
     private List<MyPojo> list;
 
     private List<Map<String, Object>> map;
