@@ -1,0 +1,18 @@
+INSERT INTO ADM_USER
+(ADM_ID, USER_ID, USER_NM, PASSWORD)
+VALUES
+(1,'aiden', '에이든', '$2a$10$csWi9ci9kN2vVaT9mkk4Yuot0ZKWnrVkDmCvyn2yrrO0HWqEEJqHW'),
+(2,'jeong', '정', '$2a$10$csWi9ci9kN2vVaT9mkk4Yuot0ZKWnrVkDmCvyn2yrrO0HWqEEJqHW');
+
+INSERT INTO ADM_USER_ROLES
+(ADM_ID, ROLE_ID)
+VALUES
+(1, 1),
+(1, 2),
+(2, 2);
+
+INSERT INTO ADM_ROLE
+(ROLE_ID, ROLE_NM)
+VALUES
+(1, 'ADM_SUPER'),
+(2, 'ADM_USER');

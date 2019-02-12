@@ -1,4 +1,4 @@
-package io.github.joyoungc.security.auth.controller;
+package io.github.joyoungc.security.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,11 +19,6 @@ public class AuthController {
     @GetMapping("/login")
     public String login() {
         return "login";
-    }
-
-    @GetMapping(value = {"/pwa"})
-    public String pwa() {
-        return "pwa";
     }
 
 }

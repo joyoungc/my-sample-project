@@ -1,14 +1,21 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Hello World!</title>
     <link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.7/css/bootstrap.min.css"/>
 </head>
 <body>
-<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
-<form th:action="@{/logout}" method="post">
-    <input type="submit" value="Sign Out" class="btn btn-primary"/>
-</form>
+    <h1 th:inline="text">Hello <span sec:authentication="principal.userName"></span></h1>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out" class="btn btn-primary"/>
+    </form>
+    <h2 sec:authorize="hasAuthority('ADM_USER')">Text visible to user.</h2>
+    <h2 sec:authorize="hasAuthority('ADM_SUPER')">Text visible to admin.</h2>
+    <h3 sec:authorize="isAuthenticated()">Text visible only to authenticated users.</h3>
+    Authenticated username:
+    <div sec:authentication="name"></div>
+    Authenticated user authorities:
+    <div sec:authentication="principal.authorities"></div>
 </body>
 </html>

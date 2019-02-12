@@ -9,4 +9,4 @@
   ___) |  __/ (__| |_| | |  | | |_| |_| |                
  |____/ \___|\___|\__,_|_|  |_|\__|\__, |                
                                    |___/                                                                 	
-:: Spring Boot ::       ${spring-boot.formatted-version}
+${Ansi.GREEN}:: Spring Boot ::       ${Ansi.DEFAULT}${spring-boot.formatted-version}
