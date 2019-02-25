@@ -1,5 +1,6 @@
 package io.github.joyoungc.security.configuration;
 
+import io.github.joyoungc.security.SecurityConstants;
 import io.github.joyoungc.security.service.AdminUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -28,17 +29,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.csrf()
-                .ignoringAntMatchers("/h2-console/**")
+                // .ignoringAntMatchers("/h2-console/**")
                 .and()
                 .headers().frameOptions().sameOrigin()
                 .and()
                 .authorizeRequests()
                 .antMatchers("/webjars/**", "/h2-console/**", "/", "/home").permitAll()
+                .antMatchers("/**").hasAuthority(SecurityConstants.ADMIN_USER)
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
                 .permitAll()
+                .and()
+                .exceptionHandling().accessDeniedPage("/403")
                 .and()
                 .logout()
                 .permitAll();

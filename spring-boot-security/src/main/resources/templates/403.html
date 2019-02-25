@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h2>Sorry, you do not have permission to view this page.</h2>
+
+    <form th:action="@{/logout}" method="post">
+        Click <input type="submit" value="Sign Out" class="btn btn-primary"/> to go back to the Homepage.
+    </form>
+</body>
+
+</html>
